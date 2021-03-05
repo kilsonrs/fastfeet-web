@@ -6,8 +6,11 @@ import React, {
   useRef,
   useState,
 } from 'react';
+
 import { IconBaseProps } from 'react-icons';
-import { Container } from './styles';
+import { FiAlertCircle } from 'react-icons/fi';
+
+import { Container, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -48,6 +51,12 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
         ref={inputRef}
         {...rest}
       />
+
+      {error && (
+        <Error title={error}>
+          <FiAlertCircle size={24} color="#de3b3b" />
+        </Error>
+      )}
     </Container>
   );
 };

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Tooltip from '../Tooltip';
 
 interface ContainerProps {
   isErrored: boolean;
@@ -8,6 +9,7 @@ interface ContainerProps {
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
+  justify-content: center;
   align-items: center;
   border: 1px solid #dddddd;
   border-radius: 4px;
@@ -20,20 +22,23 @@ export const Container = styled.div<ContainerProps>`
     `}
 
   ${props =>
-    props.isErrored &&
-    css`
-      border-color: #de3b3b;
-    `}
-
-  ${props =>
     props.isFilled &&
     css`
       border-color: #7d40e7;
     `}
 
+  ${props =>
+    props.isErrored &&
+    css`
+      border-color: #de3b3b;
+    `}
+
   input {
     border: 0;
     color: #999999;
+    height: 24px;
     width: 100%;
   }
 `;
+
+export const Error = styled(Tooltip)``;
