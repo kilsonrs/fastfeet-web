@@ -34,5 +34,6 @@ export const Container = styled.div<ContainerProps>`
   input {
     border: 0;
     color: #999999;
+    width: 100%;
   }
 `;
