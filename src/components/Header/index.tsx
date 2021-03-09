@@ -6,7 +6,7 @@ import Logo from '../../assets/logo.png';
 import { useAuth } from '../../hooks/auth';
 import { Container, Content } from './styles';
 
-const Header: React.FC = ({ children }) => {
+const Header: React.FC = () => {
   const { signOut } = useAuth();
   return (
     <Container>
@@ -30,7 +30,6 @@ const Header: React.FC = ({ children }) => {
         </nav>
         <FiLogOut size={24} color="#999999" onClick={() => signOut()} />
       </Content>
-      {children}
     </Container>
   );
 };

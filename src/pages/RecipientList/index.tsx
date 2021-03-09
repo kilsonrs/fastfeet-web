@@ -5,7 +5,7 @@ import { Container } from './styles';
 const RecipientList: React.FC = () => {
   return (
     <Container>
-      <h1>RecipientList</h1>
+      <h1>Destinatários</h1>
     </Container>
   );
 };
