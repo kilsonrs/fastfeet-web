@@ -60,10 +60,14 @@ const SignIn: React.FC = () => {
         <img src={Logo} alt="FastFeet" />
 
         <strong>SEU E-MAIL</strong>
-        <Input name="email" />
+        <Input name="email" containerStyle={{ height: 45 }} />
 
         <strong>SUA SENHA</strong>
-        <Input name="password" type="password" />
+        <Input
+          name="password"
+          type="password"
+          containerStyle={{ height: 45 }}
+        />
 
         <Button type="submit">Entrar no sistema</Button>
       </Form>

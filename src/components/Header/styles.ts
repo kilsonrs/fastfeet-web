@@ -26,6 +26,7 @@ export const Content = styled.div`
       cursor: pointer;
 
       a {
+        font-size: 15px;
         text-decoration: none;
         color: #999999;
       }

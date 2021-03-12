@@ -37,6 +37,7 @@ export const Container = styled.div`
 
     button {
       margin-top: 15px;
+      height: 45px;
     }
   }
 `;

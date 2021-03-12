@@ -14,6 +14,8 @@ export const Container = styled.div<ContainerProps>`
   border: 1px solid #dddddd;
   border-radius: 4px;
   padding: 12px 15px;
+  background: #fff;
+  height: 36px;
 
   ${props =>
     props.isFocus &&
@@ -32,6 +34,10 @@ export const Container = styled.div<ContainerProps>`
     css`
       border-color: #de3b3b;
     `}
+
+  svg {
+    margin-right: 8px;
+  }
 
   input {
     border: 0;
