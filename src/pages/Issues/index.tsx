@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { MdMoreHoriz } from 'react-icons/md';
+import React, { useCallback, useEffect, useState } from 'react';
+import ActionButton from '../../components/ActionButton';
 import Table from '../../components/Table';
 import api from '../../services/api';
 
@@ -17,6 +17,14 @@ const Issues: React.FC = () => {
     api.get('/issues').then(response => setIssues(response.data));
   }, []);
 
+  const handleIssueView = useCallback(issue => {
+    console.log(issue);
+  }, []);
+
+  const handleIssueDelete = useCallback(id => {
+    console.log(id);
+  }, []);
+
   const columns = ['Encomenda', 'Problema'];
 
   return (
@@ -24,16 +32,19 @@ const Issues: React.FC = () => {
       <h1>Problemas</h1>
       {issues ? (
         <Table columns={columns}>
-          {issues.map(row => (
-            <tr key={row.id}>
+          {issues.map(order => (
+            <tr key={order.id}>
               <td>
-                <p>#{row.id}</p>
+                <p>#{order.id}</p>
               </td>
               <td>
-                <p>{row.issue}</p>
+                <p>{order.issue}</p>
               </td>
               <td>
-                <MdMoreHoriz size={24} color="#999" />
+                <ActionButton
+                  handleView={() => handleIssueView(order)}
+                  handleDelete={() => handleIssueDelete(order.id)}
+                />
               </td>
             </tr>
           ))}

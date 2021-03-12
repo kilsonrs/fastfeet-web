@@ -32,6 +32,10 @@ export const Container = styled.div`
             margin-left: 8px;
           }
         }
+
+        svg {
+          cursor: pointer;
+        }
       }
     }
 

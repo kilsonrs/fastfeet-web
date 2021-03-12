@@ -4,10 +4,16 @@ import { MdDelete, MdEdit, MdMoreHoriz, MdVisibility } from 'react-icons/md';
 import { Container, Content } from './styles';
 
 interface ActionButtonProps {
-  name?: string;
+  handleView?(): void;
+  handleEdit?(): void;
+  handleDelete?(): void;
 }
 
-const ActionButton: React.FC<ActionButtonProps> = ({ name }) => {
+const ActionButton: React.FC<ActionButtonProps> = ({
+  handleView,
+  handleEdit,
+  handleDelete,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -21,24 +27,30 @@ const ActionButton: React.FC<ActionButtonProps> = ({ name }) => {
       </button>
       <Content isOpen={isOpen} onMouseLeave={toggleOpen}>
         <ul>
-          <li>
-            <button type="button">
-              <MdVisibility size={24} color="#8E5BE8" />
-              <p>Visualizar</p>
-            </button>
-          </li>
-          <li>
-            <button type="button">
-              <MdEdit size={24} color="#4D85EE" />
-              <p>Editar</p>
-            </button>
-          </li>
-          <li>
-            <button type="button">
-              <MdDelete size={24} color="#DE3B3B" />
-              <p>Excluir</p>
-            </button>
-          </li>
+          {handleView && (
+            <li>
+              <button type="button" onClick={handleView}>
+                <MdVisibility size={24} color="#8E5BE8" />
+                <p>Visualizar</p>
+              </button>
+            </li>
+          )}
+          {handleEdit && (
+            <li>
+              <button type="button" onClick={handleEdit}>
+                <MdEdit size={24} color="#4D85EE" />
+                <p>Editar</p>
+              </button>
+            </li>
+          )}
+          {handleDelete && (
+            <li>
+              <button type="button" onClick={handleDelete}>
+                <MdDelete size={24} color="#DE3B3B" />
+                <p>Excluir</p>
+              </button>
+            </li>
+          )}
         </ul>
       </Content>
     </Container>

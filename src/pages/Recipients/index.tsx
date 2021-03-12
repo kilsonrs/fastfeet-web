@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { MdMoreHoriz } from 'react-icons/md';
+
+import ActionButton from '../../components/ActionButton';
 import Table from '../../components/Table';
 import TableHeader from '../../components/TableHeader';
 import api from '../../services/api';
@@ -21,6 +22,14 @@ const Recipients: React.FC = () => {
 
   const handleSubmit = useCallback(data => {
     setRecipients(data);
+  }, []);
+
+  const handleRecipientEdit = useCallback(recipient => {
+    console.log(recipient);
+  }, []);
+
+  const handleRecipientDelete = useCallback(id => {
+    console.log(id);
   }, []);
 
   const columns = ['ID', 'Nome', 'Endereço'];
@@ -46,7 +55,10 @@ const Recipients: React.FC = () => {
                 <p>{recipient.address}</p>
               </td>
               <td>
-                <MdMoreHoriz size={24} color="#999" />
+                <ActionButton
+                  handleEdit={() => handleRecipientEdit(recipient)}
+                  handleDelete={() => handleRecipientDelete(recipient.id)}
+                />
               </td>
             </tr>
           ))}

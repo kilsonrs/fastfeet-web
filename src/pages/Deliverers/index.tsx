@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { MdMoreHoriz } from 'react-icons/md';
+import ActionButton from '../../components/ActionButton';
 import Table from '../../components/Table';
 import TableHeader from '../../components/TableHeader';
 import api from '../../services/api';
@@ -15,7 +15,6 @@ interface IDeliverers {
 
 const Deliverers: React.FC = () => {
   const [deliverers, setDeliverers] = useState<IDeliverers[] | null>(null);
-
   useEffect(() => {
     api.get('/deliverers').then(response => {
       setDeliverers(response.data);
@@ -24,6 +23,14 @@ const Deliverers: React.FC = () => {
 
   const handleSubmit = useCallback(data => {
     setDeliverers(data);
+  }, []);
+
+  const handleDeliverymanEdit = useCallback(deliveryman => {
+    console.log(deliveryman);
+  }, []);
+
+  const handleDeliverymanDelete = useCallback(id => {
+    console.log(id);
   }, []);
 
   const columns = ['ID', 'Foto', 'Nome', 'Email'];
@@ -60,7 +67,10 @@ const Deliverers: React.FC = () => {
                 <p>{deliveryman.email}</p>
               </td>
               <td>
-                <MdMoreHoriz size={24} color="#999" />
+                <ActionButton
+                  handleEdit={() => handleDeliverymanEdit(deliveryman)}
+                  handleDelete={() => handleDeliverymanDelete(deliveryman.id)}
+                />
               </td>
             </tr>
           ))}

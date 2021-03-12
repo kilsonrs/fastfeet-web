@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { MdMoreHoriz } from 'react-icons/md';
 
 import TableHeader from '../../components/TableHeader';
 import Table from '../../components/Table';
@@ -7,6 +6,7 @@ import Table from '../../components/Table';
 import { Container, Avatar } from './styles';
 import Badge from '../../components/Badge';
 import api from '../../services/api';
+import ActionButton from '../../components/ActionButton';
 
 interface IOrders {
   id: string | number;
@@ -20,6 +20,7 @@ interface IOrders {
 
 const Orders: React.FC = () => {
   const [orders, setOrders] = useState<IOrders[] | null>(null);
+  const [orderViewing, setOrderViewing] = useState();
 
   useEffect(() => {
     api.get('/orders').then(response => {
@@ -29,6 +30,18 @@ const Orders: React.FC = () => {
 
   const handleSubmit = useCallback(data => {
     setOrders(data);
+  }, []);
+
+  const handleOrderView = useCallback(order => {
+    setOrderViewing(order);
+  }, []);
+
+  const handleOrderEdit = useCallback(order => {
+    setOrderViewing(order);
+  }, []);
+
+  const handleOrderDelete = useCallback(id => {
+    console.log(id);
   }, []);
 
   const columns = [
@@ -78,7 +91,11 @@ const Orders: React.FC = () => {
                 <Badge status={order.status} />
               </td>
               <td>
-                <MdMoreHoriz size={24} color="#999" />
+                <ActionButton
+                  handleView={() => handleOrderView(order)}
+                  handleEdit={() => handleOrderEdit(order)}
+                  handleDelete={() => handleOrderDelete(order.id)}
+                />
               </td>
             </tr>
           ))}
