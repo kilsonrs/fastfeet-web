@@ -1,50 +1,28 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  margin-top: 32px;
+
   table {
     width: 100%;
-    margin-top: 24px;
-    border-collapse: collapse;
+    border-spacing: 0 16px;
 
-    thead {
-      tr {
-        height: 40px;
-        border-bottom: 20px solid #f5f5f5;
-      }
+    th {
+      line-height: 16px;
+      text-align: left;
+      font-weight: 600;
+      padding: 0 16px;
     }
 
-    tbody {
-      tr {
-        background: #fff;
-        height: 80px;
-        border-bottom: 20px solid #f5f5f5;
-      }
-
-      td {
+    td {
+      background: #fff;
+      border-radius: 4px;
+      height: 64px;
+      padding: 0 16px;
+      color: #666666;
+      span {
+        display: flex;
         align-items: center;
-        color: #666666;
-
-        span {
-          display: flex;
-          align-items: center;
-
-          p {
-            margin-left: 8px;
-          }
-        }
-
-        svg {
-          cursor: pointer;
-        }
-      }
-    }
-
-    td:first-child {
-      p {
-        margin-left: 24px;
-      }
-      strong {
-        margin-left: 24px;
       }
     }
   }

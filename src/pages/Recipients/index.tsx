@@ -46,7 +46,7 @@ const Recipients: React.FC = () => {
           {recipients.map(recipient => (
             <tr key={recipient.id}>
               <td>
-                <p>{recipient.id}</p>
+                <p>#{recipient.id}</p>
               </td>
               <td>
                 <p>{recipient.name}</p>

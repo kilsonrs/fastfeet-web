@@ -91,7 +91,7 @@ const Orders: React.FC = () => {
             {orders.map(order => (
               <tr key={order.id}>
                 <td>
-                  <p>{order.id}</p>
+                  <p>#{order.id}</p>
                 </td>
                 <td>
                   <p>{order.recipient}</p>
