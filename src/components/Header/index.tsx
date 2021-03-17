@@ -15,16 +15,16 @@ const Header: React.FC = () => {
         <nav>
           <ul>
             <li>
-              <Link to="/order-list">ENCOMENDAS</Link>
+              <Link to="/orders">ENCOMENDAS</Link>
             </li>
             <li>
-              <Link to="/deliveryman-list">ENTREGADORES</Link>
+              <Link to="/deliverers">ENTREGADORES</Link>
             </li>
             <li>
-              <Link to="/recipient-list">DESTINATÁRIOS</Link>
+              <Link to="/recipients">DESTINATÁRIOS</Link>
             </li>
             <li>
-              <Link to="/issue-list">PROBLEMAS</Link>
+              <Link to="/issues">PROBLEMAS</Link>
             </li>
           </ul>
         </nav>

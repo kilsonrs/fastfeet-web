@@ -42,7 +42,7 @@ const SignIn: React.FC = () => {
           password: data.password,
         });
 
-        history.push('/order-list');
+        history.push('/orders');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);

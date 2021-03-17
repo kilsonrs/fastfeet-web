@@ -17,10 +17,10 @@ const Routes: React.FC = () => {
       <Route path="/" exact component={SignIn} />
 
       <Dashboard>
-        <Route path="/order-list" component={Orders} isPrivate />
-        <Route path="/deliveryman-list" component={Deliverers} isPrivate />
-        <Route path="/recipient-list" component={Recipients} isPrivate />
-        <Route path="/issue-list" component={Issues} isPrivate />
+        <Route path="/orders" component={Orders} isPrivate />
+        <Route path="/deliverers" component={Deliverers} isPrivate />
+        <Route path="/recipients" component={Recipients} isPrivate />
+        <Route path="/issues" component={Issues} isPrivate />
       </Dashboard>
     </Switch>
   );
