@@ -23,7 +23,7 @@ const handleStatusColor = (status: string) => {
 export const Container = styled.section<StatusProps>`
   display: flex;
   align-items: center;
-  padding: 4px 10px;
+  padding: 3px 7px;
   width: fit-content;
   border-radius: 16px;
 

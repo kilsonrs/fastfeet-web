@@ -13,13 +13,13 @@ const Table: React.FC<TableProps> = ({ columns, children }) => {
           <tr>
             {columns &&
               columns.map(column => (
-                <td key={column}>
+                <th key={column}>
                   <strong>{column}</strong>
-                </td>
+                </th>
               ))}
-            <td>
+            <th>
               <strong>Ações</strong>
-            </td>
+            </th>
           </tr>
         </thead>
         <tbody>{children}</tbody>
