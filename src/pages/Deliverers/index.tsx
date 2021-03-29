@@ -21,8 +21,12 @@ const Deliverers: React.FC = () => {
     });
   }, []);
 
-  const handleSubmit = useCallback(data => {
+  const handleSearchSubmit = useCallback(data => {
     setDeliverers(data);
+  }, []);
+
+  const handleDeliverymanCreate = useCallback(() => {
+    console.log('deliveryman');
   }, []);
 
   const handleDeliverymanEdit = useCallback(deliveryman => {
@@ -39,7 +43,8 @@ const Deliverers: React.FC = () => {
     <Container>
       <h1>Entregadores</h1>
       <TableHeader
-        handleSubmit={handleSubmit}
+        onSubmitSearch={handleSearchSubmit}
+        onCreateItem={handleDeliverymanCreate}
         placeholder="Buscar por entregadores"
       />
       {deliverers ? (

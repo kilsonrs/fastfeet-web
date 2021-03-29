@@ -8,22 +8,26 @@ import Input from '../Input';
 import { Container } from './styles';
 
 interface TableHeaderProps {
-  handleSubmit(data: string): void;
+  onSubmitSearch(data: string): void;
+  onCreateItem(): void;
   placeholder: string;
 }
 
 const TableHeader: React.FC<TableHeaderProps> = ({
-  handleSubmit,
+  onSubmitSearch,
+  onCreateItem,
   placeholder,
 }) => {
   const formRef = useRef<FormHandles>(null);
   return (
     <Container>
       <nav>
-        <Form onSubmit={handleSubmit} ref={formRef}>
+        <Form onSubmit={onSubmitSearch} ref={formRef}>
           <Input name="search" icon={MdSearch} placeholder={placeholder} />
         </Form>
-        <Button icon={MdAdd}>CADASTRAR</Button>
+        <Button icon={MdAdd} onClick={onCreateItem}>
+          CADASTRAR
+        </Button>
       </nav>
     </Container>
   );

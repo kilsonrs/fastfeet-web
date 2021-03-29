@@ -20,8 +20,12 @@ const Recipients: React.FC = () => {
     api.get('/recipients').then(response => setRecipients(response.data));
   }, []);
 
-  const handleSubmit = useCallback(data => {
+  const handleSearchSubmit = useCallback(data => {
     setRecipients(data);
+  }, []);
+
+  const handleRecipientCreate = useCallback(() => {
+    console.log('recipient');
   }, []);
 
   const handleRecipientEdit = useCallback(recipient => {
@@ -38,7 +42,8 @@ const Recipients: React.FC = () => {
     <Container>
       <h1>Destinatários</h1>
       <TableHeader
-        handleSubmit={handleSubmit}
+        onSubmitSearch={handleSearchSubmit}
+        onCreateItem={handleRecipientCreate}
         placeholder="Buscar por entregadores"
       />
       {recipients ? (

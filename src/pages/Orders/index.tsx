@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
+import { useHistory } from 'react-router-dom';
 import TableHeader from '../../components/TableHeader';
 import Table from '../../components/Table';
 
@@ -31,6 +32,7 @@ const Orders: React.FC = () => {
   const [orders, setOrders] = useState<IOrders[] | null>(null);
   const [orderViewing, setOrderViewing] = useState<IOrders>();
   const [modalOpen, setModalOpen] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     api.get('/orders').then(response => {
@@ -38,7 +40,7 @@ const Orders: React.FC = () => {
     });
   }, []);
 
-  const handleSubmit = useCallback(data => {
+  const handleSearchSubmit = useCallback(data => {
     setOrders(data);
   }, []);
 
@@ -53,6 +55,10 @@ const Orders: React.FC = () => {
     },
     [toggleModal],
   );
+
+  const handleOrderCreate = useCallback(() => {
+    history.push('/create-order');
+  }, [history]);
 
   const handleOrderEdit = useCallback(order => {
     setOrderViewing(order);
@@ -83,7 +89,8 @@ const Orders: React.FC = () => {
       <Container>
         <h1>Gerenciando encomendas</h1>
         <TableHeader
-          handleSubmit={handleSubmit}
+          onSubmitSearch={handleSearchSubmit}
+          onCreateItem={handleOrderCreate}
           placeholder="Buscar por encomendas"
         />
         {orders ? (
