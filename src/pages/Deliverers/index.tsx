@@ -17,7 +17,7 @@ const Deliverers: React.FC = () => {
   const [deliverers, setDeliverers] = useState<IDeliverers[] | null>(null);
   useEffect(() => {
     api.get('/deliverers').then(response => {
-      setDeliverers(response.data);
+      setDeliverers(response.data.deliverers);
     });
   }, []);
 

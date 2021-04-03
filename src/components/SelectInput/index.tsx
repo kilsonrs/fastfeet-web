@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
-import Select from 'react-select';
+/* eslint-disable no-nested-ternary */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect, useRef, useState } from 'react';
+import { useField } from '@unform/core';
+import Select, { OptionTypeBase, Props as SelectProps } from 'react-select';
+
 import { Container } from './styles';
 
 interface SelectInputOptions {
@@ -7,12 +11,28 @@ interface SelectInputOptions {
   label: string;
 }
 
-interface SelectInputProps {
+interface SelectInputProps extends SelectProps<OptionTypeBase> {
+  name: string;
   options: SelectInputOptions[];
 }
 
-const SelectInput: React.FC<SelectInputProps> = ({ options }) => {
+const SelectInput: React.FC<SelectInputProps> = ({ options, name }) => {
   const [onFocus, setOnFocus] = useState(false);
+  const selectRef = useRef(null);
+  const { fieldName, defaultValue, registerField, error } = useField(name);
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: selectRef.current,
+      getValue: (ref: any) => {
+        if (!ref.state.value) {
+          return '';
+        }
+        return ref.state.value.value;
+      },
+    });
+  }, [fieldName, registerField]);
 
   return (
     <Container>
@@ -21,7 +41,11 @@ const SelectInput: React.FC<SelectInputProps> = ({ options }) => {
         onBlur={() => setOnFocus(false)}
         onMenuClose={() => setOnFocus(false)}
         onMenuOpen={() => setOnFocus(true)}
+        defaultValue={defaultValue}
+        ref={selectRef}
+        classNamePrefix="react-select"
         options={options}
+        placeholder=""
         theme={theme => ({
           ...theme,
           colors: {
@@ -36,11 +60,12 @@ const SelectInput: React.FC<SelectInputProps> = ({ options }) => {
           control: base => ({
             ...base,
             '&:hover': {},
-            borderColor: onFocus ? '#aa82f0' : '#dddddd',
+            borderColor: error ? '#de3b3b' : onFocus ? '#aa82f0' : '#dddddd',
             boxShadow: 'none',
           }),
         }}
       />
+      {error && <small>{error}</small>}
     </Container>
   );
 };

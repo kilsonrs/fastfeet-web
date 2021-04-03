@@ -36,7 +36,7 @@ const Orders: React.FC = () => {
 
   useEffect(() => {
     api.get('/orders').then(response => {
-      setOrders(response.data);
+      setOrders(response.data.orders);
     });
   }, []);
 

@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 27px;
+  align-items: center;
 
   h1 {
-    font-weight: 24px;
+    font-size: 24px;
+    margin: 34px 0;
   }
 
   span {
@@ -15,6 +16,7 @@ export const Container = styled.div`
 
     button {
       padding: 8px 16px;
+      height: 36px;
 
       & + button {
         margin-left: 16px;

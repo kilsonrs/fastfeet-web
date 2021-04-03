@@ -17,7 +17,7 @@ const Issues: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    api.get('/issues').then(response => setIssues(response.data));
+    api.get('/issues').then(response => setIssues(response.data.issues));
   }, []);
 
   const toggleModal = useCallback(() => {

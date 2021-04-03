@@ -10,14 +10,16 @@ import { Container } from './styles';
 interface IRecipients {
   id: string | number;
   name: string;
-  address: string;
+  full_address: string;
 }
 
 const Recipients: React.FC = () => {
   const [recipients, setRecipients] = useState<IRecipients[] | null>(null);
 
   useEffect(() => {
-    api.get('/recipients').then(response => setRecipients(response.data));
+    api
+      .get('/recipients')
+      .then(response => setRecipients(response.data.recipients));
   }, []);
 
   const handleSearchSubmit = useCallback(data => {
@@ -57,7 +59,7 @@ const Recipients: React.FC = () => {
                 <p>{recipient.name}</p>
               </td>
               <td>
-                <p>{recipient.address}</p>
+                <p>{recipient.full_address}</p>
               </td>
               <td>
                 <ActionButton
