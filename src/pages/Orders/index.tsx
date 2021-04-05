@@ -60,13 +60,26 @@ const Orders: React.FC = () => {
     history.push('/create-order');
   }, [history]);
 
-  const handleOrderEdit = useCallback(order => {
-    setOrderViewing(order);
-  }, []);
+  const handleOrderEdit = useCallback(
+    order => {
+      history.push('/edit-order', order);
+    },
+    [history],
+  );
 
-  const handleOrderDelete = useCallback(id => {
-    console.log(id);
-  }, []);
+  const handleOrderDelete = useCallback(
+    id => {
+      try {
+        if (orders) {
+          api.delete(`/orders/${id}`);
+          setOrders(orders?.filter(order => order.id !== id));
+        }
+      } catch {
+        console.error('Erro ao excluir encomenda');
+      }
+    },
+    [orders],
+  );
 
   const columns = [
     'ID',

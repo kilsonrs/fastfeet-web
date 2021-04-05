@@ -30,8 +30,8 @@ export function makeServer() {
         orders: [
           {
             id: 1,
-            recipient: 'Ludwig van Beethoven Recipient',
-            deliveryman: 'John Doe Deliveyman',
+            recipient: 'Ludwig van Beethoven',
+            deliveryman: 'John Doe',
             avatar_url: null,
             street: 'Rua Rui Barbosa',
             number: 1729,
@@ -41,6 +41,8 @@ export function makeServer() {
             uf: 'SP',
             zip_code: '11985-580',
             status: 'entregue',
+            package_name:
+              'Apple MacBook Air 13.3", Chip M1, 8GB RAM, 256GB SSD - Space Gray',
             picked_date: '2021-03-16T18:29:50.132Z',
             delivered_date: '2021-03-16T18:29:50.132Z',
             signature_url:
@@ -48,8 +50,8 @@ export function makeServer() {
           },
           {
             id: 2,
-            recipient: 'Wolfgang Amadeus Recipient',
-            deliveryman: 'Gaspar Antunes Deliveyman',
+            recipient: 'Wolfgang Amadeus',
+            deliveryman: 'Gaspar Antunes',
             avatar_url: null,
             street: 'Rua Salvador',
             number: 1729,
@@ -59,14 +61,15 @@ export function makeServer() {
             uf: 'SC',
             zip_code: '00960-580',
             status: 'pendente',
+            package_name: 'Apple USB-C DIGITAL AV MULTIPORT ADAPTER',
             picked_date: null,
             delivered_date: null,
             signature_url: null,
           },
           {
             id: 3,
-            recipient: 'Johann Sebastian Bach Recipient',
-            deliveryman: 'Dai Jiang Deliveyman',
+            recipient: 'Johann Sebastian Bach',
+            deliveryman: 'Dai Jiang',
             avatar_url: null,
             street: 'Av. Tiradentes',
             number: 5650,
@@ -76,14 +79,16 @@ export function makeServer() {
             uf: 'SP',
             zip_code: '15970-580',
             status: 'retirada',
+            package_name:
+              'iPad Air 10,9" 4ª geração Wi-Fi 64GB - Cinza-espacial',
             picked_date: '2021-03-16T18:29:50.132Z',
             delivered_date: null,
             signature_url: null,
           },
           {
             id: 4,
-            recipient: 'Frédéric Chopin Recipient',
-            deliveryman: 'Tom Hanson Deliveyman',
+            recipient: 'Frédéric Chopin',
+            deliveryman: 'Tom Hanson',
             avatar_url: null,
             street: 'Rua Paraíba',
             number: 1729,
@@ -93,6 +98,8 @@ export function makeServer() {
             uf: 'SP',
             zip_code: '00960-580',
             status: 'cancelada',
+            package_name:
+              'iPhone 12 Apple (128GB) Preto Tela 6,1" 5G Câmera 12MP + 12MP iOS',
             picked_date: '2021-03-16T18:29:50.132Z',
             delivered_date: null,
             signature_url: null,
@@ -102,26 +109,38 @@ export function makeServer() {
           {
             id: 1,
             avatar_url: null,
-            name: 'John Doe Deliveryman',
-            email: 'john@doe.com',
+            name: 'John Doe',
+            email: 'john@mail.com',
           },
           {
             id: 2,
             avatar_url: null,
-            name: 'Gaspar Antunes Deliveryman',
-            email: 'gaspar@antunes.com',
+            name: 'Gaspar Antunes',
+            email: 'gaspar@mail.com',
           },
           {
             id: 3,
             avatar_url: null,
-            name: 'Dai Jiang Deliveryman',
-            email: 'dai@jiang.com',
+            name: 'Dai Jiang',
+            email: 'daijiang@mail.com',
           },
           {
             id: 4,
             avatar_url: null,
-            name: 'Tom Hanson Deliveryman',
-            email: 'tom@hanson.com',
+            name: 'Tom Hanson',
+            email: 'tomhanson@mail.com',
+          },
+          {
+            id: 5,
+            avatar_url: null,
+            name: 'Marc Franklin',
+            email: 'marcfranklin@mail.com',
+          },
+          {
+            id: 6,
+            avatar_url: null,
+            name: 'Rosetta Castro',
+            email: 'rosettacastro@mail.com',
           },
         ],
         issues: [
@@ -147,7 +166,7 @@ export function makeServer() {
         recipients: [
           {
             id: 1,
-            name: 'John Doe Recipient',
+            name: 'Ludwig van Beethoven',
             full_address: 'Rua Beethoven, 1729, Diadema - São Paulo',
             street: 'Rua Beethoven',
             number: 1729,
@@ -159,7 +178,7 @@ export function makeServer() {
           },
           {
             id: 2,
-            name: 'Gaspar Antunes Recipient',
+            name: 'Wolfgang Amadeus',
             full_address: 'Rua Beethoven, 1729, Diadema - São Paulo',
             street: 'Rua Beethoven',
             number: 1729,
@@ -171,7 +190,7 @@ export function makeServer() {
           },
           {
             id: 3,
-            name: 'Dai Jiang Recipient',
+            name: 'Johann Sebastian Bach',
             full_address: 'Rua Beethoven, 1729, Diadema - São Paulo',
             street: 'Rua Beethoven',
             number: 1729,
@@ -183,7 +202,31 @@ export function makeServer() {
           },
           {
             id: 4,
-            name: 'Tom Hanson Recipient',
+            name: 'Frédéric Chopin',
+            full_address: 'Rua Beethoven, 1729, Diadema - São Paulo',
+            street: 'Rua Beethoven',
+            number: 1729,
+            neighborhood: 'Diadema',
+            city: 'São Paulo',
+            state: 'São Paulo',
+            uf: 'SP',
+            zip_code: '00960-580',
+          },
+          {
+            id: 5,
+            name: 'Piotr Ilitch Tchaikovski',
+            full_address: 'Rua Beethoven, 1729, Diadema - São Paulo',
+            street: 'Rua Beethoven',
+            number: 1729,
+            neighborhood: 'Diadema',
+            city: 'São Paulo',
+            state: 'São Paulo',
+            uf: 'SP',
+            zip_code: '00960-580',
+          },
+          {
+            id: 6,
+            name: 'Antonio Vivaldi',
             full_address: 'Rua Beethoven, 1729, Diadema - São Paulo',
             street: 'Rua Beethoven',
             number: 1729,
@@ -213,10 +256,46 @@ export function makeServer() {
 
       this.get('/orders');
 
+      this.put('/orders/:id', async (_, request) => {
+        const { params, requestBody } = request;
+        const data = JSON.parse(requestBody);
+
+        const { recipient, deliveryman, package_name } = data;
+
+        const order = this.schema.findBy('orders', {
+          id: params.id,
+        });
+        const recipientData = this.schema.findBy('recipients', {
+          id: recipient,
+        });
+        const deliverymanData = this.schema.findBy('deliverers', {
+          id: deliveryman,
+        });
+
+        const newOrder = {
+          recipient: recipientData?.attrs.name,
+          deliveryman: deliverymanData?.attrs.name,
+          avatar_url: deliverymanData?.attrs.avatar_url,
+          street: recipientData?.attrs.street,
+          number: recipientData?.attrs.number,
+          neighborhood: recipientData?.attrs.neighborhood,
+          city: recipientData?.attrs.city,
+          state: recipientData?.attrs.state,
+          uf: recipientData?.attrs.uf,
+          zip_code: recipientData?.attrs.zip_code,
+          package_name,
+        } as Omit<
+          OrderProps,
+          'status' | 'picked_date' | 'delivered_date' | 'signature_url'
+        >;
+
+        order?.update(newOrder);
+      });
+
       this.post('/orders', async (_, request) => {
         const data = JSON.parse(request.requestBody);
 
-        const { recipient, deliveryman, product } = data;
+        const { recipient, deliveryman, package_name } = data;
 
         const recipientData = this.schema.findBy('recipients', {
           id: recipient,
@@ -241,12 +320,20 @@ export function makeServer() {
             picked_date: null,
             delivered_date: null,
             signature_url: null,
-            product,
+            package_name,
           } as OrderProps;
 
           return this.schema.db.orders.insert(newOrder);
         }
         return null;
+      });
+
+      this.delete('/orders/:id', async (_, request) => {
+        const { params } = request;
+        const order = this.schema.findBy('orders', {
+          id: params.id,
+        });
+        order?.destroy();
       });
 
       this.get('/deliverers');
