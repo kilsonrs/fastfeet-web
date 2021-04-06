@@ -13,6 +13,7 @@ import Issues from '../pages/Issues';
 import CreateOrder from '../pages/Orders/CreateOrder';
 import EditOrder from '../pages/Orders/EditOrder';
 import CreateDeliveryman from '../pages/Deliverers/CreateDeliveryman';
+import EditDeliveryman from '../pages/Deliverers/EditDeliveryman';
 
 const Routes: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const Routes: React.FC = () => {
           component={CreateDeliveryman}
           isPrivate
         />
+        <Route path="/edit-deliveryman" component={EditDeliveryman} isPrivate />
         <Route path="/recipients" component={Recipients} isPrivate />
         <Route path="/issues" component={Issues} isPrivate />
       </Dashboard>

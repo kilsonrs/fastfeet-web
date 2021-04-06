@@ -31,9 +31,12 @@ const Deliverers: React.FC = () => {
     history.push('/create-deliveryman');
   }, [history]);
 
-  const handleDeliverymanEdit = useCallback(deliveryman => {
-    console.log(deliveryman);
-  }, []);
+  const handleDeliverymanEdit = useCallback(
+    deliveryman => {
+      history.push('/edit-deliveryman', deliveryman);
+    },
+    [history],
+  );
 
   const handleDeliverymanDelete = useCallback(
     id => {

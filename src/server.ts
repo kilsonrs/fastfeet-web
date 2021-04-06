@@ -343,6 +343,17 @@ export function makeServer() {
         return this.schema.db.deliverers.insert(data);
       });
 
+      this.put('/deliverers/:id', async (_, request) => {
+        const { params, requestBody } = request;
+        const deliverymanData = JSON.parse(requestBody);
+
+        const deliveryman = this.schema.findBy('deliverers', {
+          id: params.id,
+        });
+
+        deliveryman?.update(deliverymanData);
+      });
+
       this.delete('/deliverers/:id', async (_, request) => {
         const { params } = request;
         const deliveryman = this.schema.findBy('deliverers', {
