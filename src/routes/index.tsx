@@ -12,6 +12,7 @@ import Recipients from '../pages/Recipients';
 import Issues from '../pages/Issues';
 import CreateOrder from '../pages/Orders/CreateOrder';
 import EditOrder from '../pages/Orders/EditOrder';
+import CreateDeliveryman from '../pages/Deliverers/CreateDeliveryman';
 
 const Routes: React.FC = () => {
   return (
@@ -23,6 +24,11 @@ const Routes: React.FC = () => {
         <Route path="/create-order" exact component={CreateOrder} isPrivate />
         <Route path="/edit-order" exact component={EditOrder} isPrivate />
         <Route path="/deliverers" component={Deliverers} isPrivate />
+        <Route
+          path="/create-deliveryman"
+          component={CreateDeliveryman}
+          isPrivate
+        />
         <Route path="/recipients" component={Recipients} isPrivate />
         <Route path="/issues" component={Issues} isPrivate />
       </Dashboard>

@@ -338,6 +338,11 @@ export function makeServer() {
 
       this.get('/deliverers');
 
+      this.post('/deliverers', async (_, request) => {
+        const data = JSON.parse(request.requestBody);
+        return this.schema.db.deliverers.insert(data);
+      });
+
       this.get('/issues');
 
       this.get('/recipients');

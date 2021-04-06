@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import ActionButton from '../../components/ActionButton';
 import Table from '../../components/Table';
 import TableHeader from '../../components/TableHeader';
@@ -15,6 +16,7 @@ interface IDeliverers {
 
 const Deliverers: React.FC = () => {
   const [deliverers, setDeliverers] = useState<IDeliverers[] | null>(null);
+  const history = useHistory();
   useEffect(() => {
     api.get('/deliverers').then(response => {
       setDeliverers(response.data.deliverers);
@@ -26,8 +28,8 @@ const Deliverers: React.FC = () => {
   }, []);
 
   const handleDeliverymanCreate = useCallback(() => {
-    console.log('deliveryman');
-  }, []);
+    history.push('/create-deliveryman');
+  }, [history]);
 
   const handleDeliverymanEdit = useCallback(deliveryman => {
     console.log(deliveryman);
