@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Modal from '../Modal';
 
-import { Address, Status, Signature, Container } from './styles';
+import { Address, Status, Signature, Container, OrderInfo } from './styles';
 
 interface IOrders {
   id: string | number;
@@ -18,6 +18,7 @@ interface IOrders {
   picked_date: string | null;
   delivered_date: string | null;
   status: string;
+  package_name: string;
   signature_url: string | null;
 }
 
@@ -38,8 +39,12 @@ const ModalViewOrder: React.FC<ModalProps> = ({ isOpen, setIsOpen, order }) => {
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Container>
-        <strong>Informações da encomenda</strong>
+        <OrderInfo>
+          <strong>Informações da encomenda</strong>
+          <p>{parsedOrder.package_name}</p>
+        </OrderInfo>
         <Address>
+          <strong>{parsedOrder.recipient}</strong>
           <p>{`${parsedOrder.street}, ${parsedOrder.number}`}</p>
           <p>{`${parsedOrder.city} - ${parsedOrder.uf}`}</p>
           <p>{parsedOrder.zip_code}</p>

@@ -4,8 +4,30 @@ export const Container = styled.div`
   width: 520px;
 `;
 
+export const OrderInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  strong {
+    color: #666;
+    margin-bottom: 16px;
+  }
+
+  p {
+    color: #666;
+    margin-top: 16px;
+  }
+`;
+
 export const Address = styled.section`
   margin: 16px 0 8px;
+
+  strong {
+    display: block;
+    color: #666666;
+    margin-bottom: 8px;
+  }
+
   p {
     margin-top: 4px;
     color: #666666;

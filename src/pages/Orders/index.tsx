@@ -25,6 +25,7 @@ interface IOrders {
   picked_date: string | null;
   delivered_date: string | null;
   status: string;
+  package_name: string;
   signature_url: string | null;
 }
 
