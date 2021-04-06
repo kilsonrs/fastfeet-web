@@ -35,9 +35,21 @@ const Deliverers: React.FC = () => {
     console.log(deliveryman);
   }, []);
 
-  const handleDeliverymanDelete = useCallback(id => {
-    console.log(id);
-  }, []);
+  const handleDeliverymanDelete = useCallback(
+    id => {
+      try {
+        if (deliverers) {
+          api.delete(`/deliverers/${id}`);
+          setDeliverers(
+            deliverers?.filter(deliveryman => deliveryman.id !== id),
+          );
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    [deliverers],
+  );
 
   const columns = ['ID', 'Foto', 'Nome', 'Email'];
 
