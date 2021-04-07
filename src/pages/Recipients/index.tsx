@@ -39,9 +39,20 @@ const Recipients: React.FC = () => {
     [history],
   );
 
-  const handleRecipientDelete = useCallback(id => {
-    console.log(id);
-  }, []);
+  const handleRecipientDelete = useCallback(
+    id => {
+      try {
+        if (recipients) {
+          api.delete(`/recipients/${id}`);
+          setRecipients(recipients?.filter(recipient => recipient.id !== id));
+        }
+      } catch (err) {
+        console.error(err);
+      }
+      console.log(id);
+    },
+    [recipients],
+  );
 
   const columns = ['ID', 'Nome', 'Endereço'];
 

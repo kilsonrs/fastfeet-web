@@ -412,7 +412,13 @@ export function makeServer() {
         });
 
         recipient?.update(newRecipient);
-        console.log(recipient);
+      });
+
+      this.delete('/recipients/:id', async (_, request) => {
+        const recipient = this.schema.findBy('recipients', {
+          id: request.params.id,
+        });
+        recipient?.destroy();
       });
     },
   });
