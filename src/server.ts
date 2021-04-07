@@ -380,14 +380,39 @@ export function makeServer() {
       this.get('/recipients');
 
       this.post('/recipients', async (_, request) => {
-        const data: RecipientProps = JSON.parse(request.requestBody);
-        if (data) {
-          const { street, number, neighborhood, city } = data;
+        const recipientData: RecipientProps = JSON.parse(request.requestBody);
+        if (recipientData) {
+          const { street, number, neighborhood, city } = recipientData;
           const full_address = `${street}, ${number}, ${neighborhood} - ${city}`;
-          const newRecipient = {} as RecipientProps;
-          Object.assign(newRecipient, data, { full_address });
+
+          const newRecipient = {
+            ...recipientData,
+            full_address,
+          } as RecipientProps;
+
           this.schema.db.recipients.insert(newRecipient);
         }
+      });
+
+      this.put('/recipients/:id', async (_, request) => {
+        const { params, requestBody } = request;
+        const recipientData: RecipientProps = JSON.parse(requestBody);
+
+        const { street, number, neighborhood, city } = recipientData;
+        const full_address = `${street}, ${number}, ${neighborhood} - ${city}`;
+        console.log(full_address);
+
+        const newRecipient = {
+          ...recipientData,
+          full_address,
+        } as RecipientProps;
+
+        const recipient = this.schema.findBy('recipients', {
+          id: params.id,
+        });
+
+        recipient?.update(newRecipient);
+        console.log(recipient);
       });
     },
   });

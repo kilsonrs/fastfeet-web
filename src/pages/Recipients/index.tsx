@@ -17,6 +17,7 @@ interface IRecipients {
 const Recipients: React.FC = () => {
   const [recipients, setRecipients] = useState<IRecipients[] | null>(null);
   const history = useHistory();
+
   useEffect(() => {
     api
       .get('/recipients')
@@ -31,9 +32,12 @@ const Recipients: React.FC = () => {
     history.push('/create-recipient');
   }, [history]);
 
-  const handleRecipientEdit = useCallback(recipient => {
-    console.log(recipient);
-  }, []);
+  const handleRecipientEdit = useCallback(
+    recipient => {
+      history.push('/edit-recipient', recipient);
+    },
+    [history],
+  );
 
   const handleRecipientDelete = useCallback(id => {
     console.log(id);

@@ -19,9 +19,30 @@ interface EditRecipient {
   zip_code: string;
 }
 
+interface EditRecipientParams {
+  id: string;
+  name: string;
+  street: string;
+  number: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  zip_code: string;
+}
+
 const EditRecipient: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const history = useHistory();
+  const history = useHistory<EditRecipientParams>();
+  const {
+    id: recipientId,
+    name,
+    street,
+    number,
+    neighborhood,
+    city,
+    state,
+    zip_code,
+  } = history.location.state;
 
   const submitForm = useCallback(() => {
     formRef.current?.submitForm();
@@ -42,12 +63,12 @@ const EditRecipient: React.FC = () => {
           zip_code: Yup.string().required(),
         });
 
-        // await schema.validate(data, {
-        //   abortEarly: false,
-        // });
+        await schema.validate(data, {
+          abortEarly: false,
+        });
 
-        await api.post('/recipients', data);
-        history.goBack();
+        await api.put(`/recipients/${recipientId}`, data);
+        history.push('/recipients');
       } catch (err) {
         console.error(err);
         if (err instanceof Yup.ValidationError) {
@@ -57,13 +78,25 @@ const EditRecipient: React.FC = () => {
         }
       }
     },
-    [history],
+    [history, recipientId],
   );
 
   return (
     <Container>
-      <FormHeader title="Cadastro de destinatário" handleSubmit={submitForm} />
-      <Content onSubmit={handleSubmit} ref={formRef}>
+      <FormHeader title="Edição de destinatário" handleSubmit={submitForm} />
+      <Content
+        onSubmit={handleSubmit}
+        ref={formRef}
+        initialData={{
+          name,
+          street,
+          number,
+          neighborhood,
+          city,
+          state,
+          zip_code,
+        }}
+      >
         <span className="name">
           <strong>Nome</strong>
           <Input name="name" type="text" />

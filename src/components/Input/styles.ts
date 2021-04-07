@@ -9,13 +9,13 @@ interface ContainerProps {
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   border: 1px solid #dddddd;
   border-radius: 4px;
   padding: 12px 15px;
   background: #fff;
-  height: 36px;
+  height: 45px;
 
   ${props =>
     props.isFocus &&
@@ -35,15 +35,17 @@ export const Container = styled.div<ContainerProps>`
       border-color: #de3b3b;
     `}
 
-  svg {
-    margin-right: 8px;
-  }
-
   input {
     border: 0;
     color: #999999;
     height: 24px;
     width: 100%;
+
+    ${props =>
+      props.isErrored &&
+      css`
+        width: 100%;
+      `}
   }
 `;
 

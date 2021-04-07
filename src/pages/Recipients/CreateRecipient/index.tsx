@@ -34,12 +34,12 @@ const CreateRecipient: React.FC = () => {
 
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome é obrigatório'),
-          street: Yup.string().required(),
-          number: Yup.number().required(),
+          street: Yup.string().required('Rua é obrigatório'),
+          number: Yup.number().required('Número é obrigatório'),
           neighborhood: Yup.string(),
-          city: Yup.string().required(),
-          state: Yup.string().required(),
-          zip_code: Yup.string().required(),
+          city: Yup.string().required('Cidade é obrigatório'),
+          state: Yup.string().required('Estado é obrigatório'),
+          zip_code: Yup.string().required('CEP é obrigatório'),
         });
 
         await schema.validate(data, {
