@@ -14,6 +14,7 @@ import CreateOrder from '../pages/Orders/CreateOrder';
 import EditOrder from '../pages/Orders/EditOrder';
 import CreateDeliveryman from '../pages/Deliverers/CreateDeliveryman';
 import EditDeliveryman from '../pages/Deliverers/EditDeliveryman';
+import CreateRecipient from '../pages/Recipients/CreateRecipient';
 
 const Routes: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const Routes: React.FC = () => {
         />
         <Route path="/edit-deliveryman" component={EditDeliveryman} isPrivate />
         <Route path="/recipients" component={Recipients} isPrivate />
+        <Route path="/create-recipient" component={CreateRecipient} isPrivate />
         <Route path="/issues" component={Issues} isPrivate />
       </Dashboard>
     </Switch>

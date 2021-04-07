@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import ActionButton from '../../components/ActionButton';
 import Table from '../../components/Table';
@@ -15,7 +16,7 @@ interface IRecipients {
 
 const Recipients: React.FC = () => {
   const [recipients, setRecipients] = useState<IRecipients[] | null>(null);
-
+  const history = useHistory();
   useEffect(() => {
     api
       .get('/recipients')
@@ -27,8 +28,8 @@ const Recipients: React.FC = () => {
   }, []);
 
   const handleRecipientCreate = useCallback(() => {
-    console.log('recipient');
-  }, []);
+    history.push('/create-recipient');
+  }, [history]);
 
   const handleRecipientEdit = useCallback(recipient => {
     console.log(recipient);

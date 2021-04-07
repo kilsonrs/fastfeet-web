@@ -17,6 +17,19 @@ interface OrderProps {
   delivered_date: string | null;
   signature_url: string | null;
 }
+
+interface RecipientProps {
+  name: string;
+  full_address: string;
+  street: string;
+  number: number;
+  neighborhood: string;
+  city: string;
+  state: string;
+  uf: string;
+  zip_code: string;
+}
+
 export function makeServer() {
   return createServer({
     models: {
@@ -365,6 +378,17 @@ export function makeServer() {
       this.get('/issues');
 
       this.get('/recipients');
+
+      this.post('/recipients', async (_, request) => {
+        const data: RecipientProps = JSON.parse(request.requestBody);
+        if (data) {
+          const { street, number, neighborhood, city } = data;
+          const full_address = `${street}, ${number}, ${neighborhood} - ${city}`;
+          const newRecipient = {} as RecipientProps;
+          Object.assign(newRecipient, data, { full_address });
+          this.schema.db.recipients.insert(newRecipient);
+        }
+      });
     },
   });
 }
