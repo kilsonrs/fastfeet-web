@@ -16,7 +16,7 @@ export const Content = styled(Form)`
     'p p ';
   margin-top: 16px;
 
-  .product {
+  .package_name {
     grid-area: p;
   }
 

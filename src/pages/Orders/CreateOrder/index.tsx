@@ -34,7 +34,7 @@ interface IDeliverers {
 interface CreateOrderForm {
   recipient: string;
   deliveryman: string;
-  product: string;
+  package_name: string;
 }
 
 const CreateOrder: React.FC = () => {
@@ -64,7 +64,7 @@ const CreateOrder: React.FC = () => {
         const schema = Yup.object().shape({
           deliveryman: Yup.string().required('Entregador é obrigatório.'),
           recipient: Yup.string().required('Destinatário é obrigatório.'),
-          product: Yup.string().required('Nome do produto é obrigatório.'),
+          package_name: Yup.string().required('Nome do produto é obrigatório.'),
         });
 
         await schema.validate(data, {
@@ -110,9 +110,9 @@ const CreateOrder: React.FC = () => {
           <strong>Entregador</strong>
           <SelectInput name="deliveryman" options={deliverymanOptions} />
         </span>
-        <span className="product">
+        <span className="package_name">
           <strong>Nome do produto</strong>
-          <Input name="product" type="text" />
+          <Input name="package_name" type="text" />
         </span>
       </Content>
     </Container>
