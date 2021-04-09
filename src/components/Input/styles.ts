@@ -10,7 +10,7 @@ export const Container = styled.div``;
 
 export const Content = styled.div<ContainerProps>`
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
   border: 1px solid #dddddd;
   border-radius: 4px;
@@ -50,6 +50,10 @@ export const Content = styled.div<ContainerProps>`
       css`
         width: 100%;
       `}
+  }
+
+  svg {
+    margin-right: 8px;
   }
 `;
 
