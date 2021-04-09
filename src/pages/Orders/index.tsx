@@ -8,7 +8,7 @@ import { Container, Avatar } from './styles';
 import Badge from '../../components/Badge';
 import api from '../../services/api';
 import ActionButton from '../../components/ActionButton';
-import ModalViewOrder from '../../components/ModalViewOrder';
+import ViewOrderModal from '../../components/ViewOrderModal';
 
 interface IOrders {
   id: string | number;
@@ -94,7 +94,7 @@ const Orders: React.FC = () => {
   return (
     <>
       {orderViewing && (
-        <ModalViewOrder
+        <ViewOrderModal
           isOpen={modalOpen}
           setIsOpen={toggleModal}
           order={orderViewing}

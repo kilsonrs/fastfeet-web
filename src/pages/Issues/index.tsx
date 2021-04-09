@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import ActionButton from '../../components/ActionButton';
-import ModalViewIssue from '../../components/ModalViewIssue';
+import ViewIssueModal from '../../components/ViewIssueModal';
 import Table from '../../components/Table';
 import api from '../../services/api';
 
@@ -41,7 +41,7 @@ const Issues: React.FC = () => {
   return (
     <>
       {issueViewing && (
-        <ModalViewIssue
+        <ViewIssueModal
           isOpen={modalOpen}
           setIsOpen={toggleModal}
           issue={issueViewing}

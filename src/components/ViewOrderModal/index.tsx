@@ -28,7 +28,7 @@ interface ModalProps {
   setIsOpen(): void;
 }
 
-const ModalViewOrder: React.FC<ModalProps> = ({ isOpen, setIsOpen, order }) => {
+const ViewOrderModal: React.FC<ModalProps> = ({ isOpen, setIsOpen, order }) => {
   const parsedOrder = useMemo(() => {
     return {
       ...order,
@@ -71,4 +71,4 @@ const ModalViewOrder: React.FC<ModalProps> = ({ isOpen, setIsOpen, order }) => {
   );
 };
 
-export default ModalViewOrder;
+export default ViewOrderModal;

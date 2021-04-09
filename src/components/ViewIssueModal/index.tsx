@@ -15,7 +15,7 @@ interface ModalProps {
   setIsOpen(): void;
 }
 
-const ModalViewIssue: React.FC<ModalProps> = ({ isOpen, setIsOpen, issue }) => {
+const ViewIssueModal: React.FC<ModalProps> = ({ isOpen, setIsOpen, issue }) => {
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Container>
@@ -26,4 +26,4 @@ const ModalViewIssue: React.FC<ModalProps> = ({ isOpen, setIsOpen, issue }) => {
   );
 };
 
-export default ModalViewIssue;
+export default ViewIssueModal;
