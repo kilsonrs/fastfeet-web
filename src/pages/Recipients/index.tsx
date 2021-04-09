@@ -62,7 +62,7 @@ const Recipients: React.FC = () => {
       <TableHeader
         onSubmitSearch={handleSearchSubmit}
         onCreateItem={handleRecipientCreate}
-        placeholder="Buscar por entregadores"
+        placeholder="Buscar por destinatários"
       />
       {recipients ? (
         <Table columns={columns}>
