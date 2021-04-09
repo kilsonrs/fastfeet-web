@@ -1,35 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { createServer, Model } from 'miragejs';
 
-interface OrderProps {
-  recipient: string;
-  deliveryman: string;
-  avatar_url: null;
-  street: string;
-  number: 1729;
-  neighborhood: string;
-  city: string;
-  state: string;
-  uf: string;
-  zip_code: string;
-  status: string;
-  picked_date: string | null;
-  delivered_date: string | null;
-  signature_url: string | null;
-}
-
-interface RecipientProps {
-  name: string;
-  full_address: string;
-  street: string;
-  number: number;
-  neighborhood: string;
-  city: string;
-  state: string;
-  uf: string;
-  zip_code: string;
-}
-
 export function makeServer() {
   return createServer({
     models: {
@@ -259,8 +230,8 @@ export function makeServer() {
         return {
           user: {
             id: 'user_id',
-            name: 'admin_user Recipient',
-            email: 'admin@fastfeet.com.br',
+            name: 'admin_user',
+            email: 'admin@fastfeet.com',
             is_deliveryman: false,
           },
           token: 'any_token',
@@ -268,6 +239,38 @@ export function makeServer() {
       });
 
       this.get('/orders');
+
+      this.post('/orders', async (_, request) => {
+        const data = JSON.parse(request.requestBody);
+
+        const { recipient, deliveryman, package_name } = data;
+
+        const recipientData = this.schema.findBy('recipients', {
+          id: recipient,
+        })?.attrs;
+
+        const deliverymanData = this.schema.findBy('deliverers', {
+          id: deliveryman,
+        })?.attrs;
+
+        if (recipientData && deliverymanData) {
+          const { name: recipientName } = recipientData;
+          const { name: deliverymanName } = deliverymanData;
+
+          return this.schema.db.orders.insert({
+            ...recipientData,
+            ...deliverymanData,
+            recipient: recipientName,
+            deliveryman: deliverymanName,
+            package_name,
+            status: 'pendente',
+            picked_date: null,
+            delivered_date: null,
+            signature_url: null,
+          });
+        }
+        return null;
+      });
 
       this.put('/orders/:id', async (_, request) => {
         const { params, requestBody } = request;
@@ -278,67 +281,28 @@ export function makeServer() {
         const order = this.schema.findBy('orders', {
           id: params.id,
         });
-        const recipientData = this.schema.findBy('recipients', {
-          id: recipient,
-        });
-        const deliverymanData = this.schema.findBy('deliverers', {
-          id: deliveryman,
-        });
-
-        const newOrder = {
-          recipient: recipientData?.attrs.name,
-          deliveryman: deliverymanData?.attrs.name,
-          avatar_url: deliverymanData?.attrs.avatar_url,
-          street: recipientData?.attrs.street,
-          number: recipientData?.attrs.number,
-          neighborhood: recipientData?.attrs.neighborhood,
-          city: recipientData?.attrs.city,
-          state: recipientData?.attrs.state,
-          uf: recipientData?.attrs.uf,
-          zip_code: recipientData?.attrs.zip_code,
-          package_name,
-        } as Omit<
-          OrderProps,
-          'status' | 'picked_date' | 'delivered_date' | 'signature_url'
-        >;
-
-        order?.update(newOrder);
-      });
-
-      this.post('/orders', async (_, request) => {
-        const data = JSON.parse(request.requestBody);
-
-        const { recipient, deliveryman, package_name } = data;
 
         const recipientData = this.schema.findBy('recipients', {
           id: recipient,
-        });
+        })?.attrs;
+
         const deliverymanData = this.schema.findBy('deliverers', {
           id: deliveryman,
-        });
+        })?.attrs;
 
-        if (recipientData?.attrs && deliverymanData?.attrs) {
-          const newOrder = {
-            recipient: recipientData?.attrs.name,
-            deliveryman: deliverymanData?.attrs.name,
-            avatar_url: deliverymanData?.attrs.avatar_url,
-            street: recipientData?.attrs.street,
-            number: recipientData?.attrs.number,
-            neighborhood: recipientData?.attrs.neighborhood,
-            city: recipientData?.attrs.city,
-            state: recipientData?.attrs.state,
-            uf: recipientData?.attrs.uf,
-            zip_code: recipientData?.attrs.zip_code,
-            status: 'pendente',
-            picked_date: null,
-            delivered_date: null,
-            signature_url: null,
+        if (recipientData && deliverymanData) {
+          const { name: recipientName } = recipientData;
+          const { name: deliverymanName } = deliverymanData;
+
+          order?.update({
+            ...recipientData,
+            ...deliverymanData,
+            id: params.id,
+            recipient: recipientName,
+            deliveryman: deliverymanName,
             package_name,
-          } as OrderProps;
-
-          return this.schema.db.orders.insert(newOrder);
+          });
         }
-        return null;
       });
 
       this.delete('/orders/:id', async (_, request) => {
@@ -380,38 +344,34 @@ export function makeServer() {
       this.get('/recipients');
 
       this.post('/recipients', async (_, request) => {
-        const recipientData: RecipientProps = JSON.parse(request.requestBody);
+        const recipientData = JSON.parse(request.requestBody);
+
         if (recipientData) {
           const { street, number, neighborhood, city } = recipientData;
           const full_address = `${street}, ${number}, ${neighborhood} - ${city}`;
 
-          const newRecipient = {
+          this.schema.db.recipients.insert({
             ...recipientData,
             full_address,
-          } as RecipientProps;
-
-          this.schema.db.recipients.insert(newRecipient);
+          });
         }
       });
 
       this.put('/recipients/:id', async (_, request) => {
         const { params, requestBody } = request;
-        const recipientData: RecipientProps = JSON.parse(requestBody);
+        const recipientData = JSON.parse(requestBody);
 
         const { street, number, neighborhood, city } = recipientData;
         const full_address = `${street}, ${number}, ${neighborhood} - ${city}`;
-        console.log(full_address);
-
-        const newRecipient = {
-          ...recipientData,
-          full_address,
-        } as RecipientProps;
 
         const recipient = this.schema.findBy('recipients', {
           id: params.id,
         });
 
-        recipient?.update(newRecipient);
+        recipient?.update({
+          ...recipientData,
+          full_address,
+        });
       });
 
       this.delete('/recipients/:id', async (_, request) => {
