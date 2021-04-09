@@ -10,7 +10,8 @@ export const Content = styled(Form)`
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 30px;
+  grid-row-gap: 8px;
+  grid-column-gap: 30px;
   grid-template-areas:
     'd e'
     'p p ';

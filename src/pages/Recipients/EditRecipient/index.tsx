@@ -55,12 +55,15 @@ const EditRecipient: React.FC = () => {
 
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome é obrigatório'),
-          street: Yup.string().required(),
-          number: Yup.number().required(),
-          neighborhood: Yup.string(),
-          city: Yup.string().required(),
-          state: Yup.string().required(),
-          zip_code: Yup.string().required(),
+          street: Yup.string().required('Rua é obrigatório'),
+          number: Yup.number()
+            .required()
+            .typeError('Número é obrigatório')
+            .positive('precisa ser maior que zero'),
+          neighborhood: Yup.string().required('Bairro é obrigatório'),
+          city: Yup.string().required('Cidade é obrigatório'),
+          state: Yup.string().required('Estado é obrigatório'),
+          zip_code: Yup.string().required('CEP é obrigatório'),
         });
 
         await schema.validate(data, {

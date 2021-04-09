@@ -3,8 +3,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useField } from '@unform/core';
 import Select, { OptionTypeBase, Props as SelectProps } from 'react-select';
+import { MdReportProblem } from 'react-icons/md';
 
-import { Container } from './styles';
+import { Container, Error } from './styles';
 
 interface SelectInputOptions {
   value: string;
@@ -38,7 +39,7 @@ const SelectInput: React.FC<SelectInputProps> = ({ options, name }) => {
   }, [fieldName, registerField]);
 
   return (
-    <Container>
+    <Container isErrored={!!error}>
       <Select
         onFocus={() => setOnFocus(true)}
         onBlur={() => setOnFocus(false)}
@@ -68,7 +69,12 @@ const SelectInput: React.FC<SelectInputProps> = ({ options, name }) => {
           }),
         }}
       />
-      {error && <small>{error}</small>}
+      {error && (
+        <Error>
+          <MdReportProblem size={18} color="#de3b3b" />
+          <small>{error}</small>
+        </Error>
+      )}
     </Container>
   );
 };

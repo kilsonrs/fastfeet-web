@@ -8,9 +8,9 @@ import React, {
 } from 'react';
 
 import { IconBaseProps } from 'react-icons';
-import { FiAlertCircle } from 'react-icons/fi';
+import { MdReportProblem } from 'react-icons/md';
 
-import { Container, Error } from './styles';
+import { Container, Content, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -48,25 +48,27 @@ const Input: React.FC<InputProps> = ({
   }, [fieldName, registerField]);
 
   return (
-    <Container
-      style={containerStyle}
-      isErrored={!!error}
-      isFocus={isFocused}
-      isFilled={isFilled}
-    >
-      {Icon && <Icon size={20} color="#999999" />}
+    <Container>
+      <Content
+        style={containerStyle}
+        isErrored={!!error}
+        isFocus={isFocused}
+        isFilled={isFilled}
+      >
+        {Icon && <Icon size={20} color="#999999" />}
 
-      <input
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        defaultValue={defaultValue}
-        ref={inputRef}
-        {...rest}
-      />
-
+        <input
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          defaultValue={defaultValue}
+          ref={inputRef}
+          {...rest}
+        />
+      </Content>
       {error && (
-        <Error title={error}>
-          <FiAlertCircle size={24} color="#de3b3b" />
+        <Error>
+          <MdReportProblem size={18} color="#de3b3b" />
+          <small>{error}</small>
         </Error>
       )}
     </Container>

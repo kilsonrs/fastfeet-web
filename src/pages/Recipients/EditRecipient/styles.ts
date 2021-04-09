@@ -10,7 +10,8 @@ export const Content = styled(Form)`
 
   display: grid;
   grid-template-columns: 4fr 3fr;
-  grid-gap: 30px;
+  grid-row-gap: 8px;
+  grid-column-gap: 30px;
   grid-template-areas:
     'name   name   name    name'
     'street street number  neigh'

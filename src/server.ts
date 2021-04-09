@@ -256,6 +256,8 @@ export function makeServer() {
         if (recipientData && deliverymanData) {
           const { name: recipientName } = recipientData;
           const { name: deliverymanName } = deliverymanData;
+          delete recipientData.id;
+          delete deliverymanData.id;
 
           return this.schema.db.orders.insert({
             ...recipientData,
