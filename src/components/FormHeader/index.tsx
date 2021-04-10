@@ -19,6 +19,7 @@ const FormHeader: React.FC<FormHeaderProps> = ({ title, handleSubmit }) => {
         <Button
           icon={MdArrowBack}
           type="button"
+          color="#CCCCCC"
           onClick={() => history.goBack()}
         >
           VOLTAR

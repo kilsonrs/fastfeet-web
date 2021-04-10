@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
-export const Container = styled.button`
+interface ContainerProps {
+  color?: string;
+}
+
+export const Container = styled.button<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   border: 0;
   border-radius: 4px;
-  background: #7d40e7;
+  background: ${({ color }) => color || '#7d40e7'};
 
   color: #fff;
   font-size: 14px;
