@@ -24,12 +24,30 @@ export const Content = styled.div`
       margin-left: 20px;
       font-weight: 600;
       cursor: pointer;
+      position: relative;
 
       a {
         font-size: 15px;
         text-decoration: none;
         color: #999999;
       }
+    }
+
+    .active {
+      a {
+        color: #8e5be8;
+      }
+    }
+
+    .active::after {
+      content: '';
+      height: 3px;
+      width: 100%;
+      border-radius: 3px 3px 0 0;
+      position: absolute;
+      top: 37px;
+      left: 0;
+      background: #8e5be8;
     }
   }
 
