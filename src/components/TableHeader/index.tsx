@@ -1,7 +1,7 @@
-import { FormHandles } from '@unform/core';
+import React, { useCallback, useRef, useState } from 'react';
 import { Form } from '@unform/web';
-import React, { useRef } from 'react';
 import { MdAdd, MdSearch } from 'react-icons/md';
+import { FormHandles } from '@unform/core';
 import Button from '../Button';
 import Input from '../Input';
 
@@ -19,11 +19,29 @@ const TableHeader: React.FC<TableHeaderProps> = ({
   placeholder,
 }) => {
   const formRef = useRef<FormHandles>(null);
+  const [timer, setTimer] = useState<NodeJS.Timeout>();
+
+  const handleInputChange = useCallback(() => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    setTimer(
+      setTimeout(() => {
+        formRef.current?.submitForm();
+      }, 300),
+    );
+  }, [timer]);
+
   return (
     <Container>
       <nav>
         <Form onSubmit={onSubmitSearch} ref={formRef}>
-          <Input name="search" icon={MdSearch} placeholder={placeholder} />
+          <Input
+            name="search"
+            icon={MdSearch}
+            placeholder={placeholder}
+            handleInputChange={handleInputChange}
+          />
         </Form>
         <Button icon={MdAdd} onClick={onCreateItem}>
           CADASTRAR

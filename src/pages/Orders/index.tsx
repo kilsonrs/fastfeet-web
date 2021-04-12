@@ -35,15 +35,31 @@ const Orders: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const history = useHistory();
 
-  useEffect(() => {
-    api.get('/orders').then(response => {
-      setOrders(response.data.orders);
-    });
+  const loadOrders = useCallback(async searchData => {
+    try {
+      const response = await api.get('/orders', {
+        params: {
+          search: searchData?.search,
+        },
+      });
+      if (response.data) {
+        setOrders(response.data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }, []);
 
-  const handleSearchSubmit = useCallback(data => {
-    setOrders(data);
-  }, []);
+  useEffect(() => {
+    loadOrders(null);
+  }, [loadOrders]);
+
+  const handleSearchSubmit = useCallback(
+    searchData => {
+      loadOrders(searchData);
+    },
+    [loadOrders],
+  );
 
   const toggleModal = useCallback(() => {
     setModalOpen(!modalOpen);
