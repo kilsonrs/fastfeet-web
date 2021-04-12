@@ -17,15 +17,32 @@ interface IDeliverers {
 const Deliverers: React.FC = () => {
   const [deliverers, setDeliverers] = useState<IDeliverers[] | null>(null);
   const history = useHistory();
-  useEffect(() => {
-    api.get('/deliverers').then(response => {
-      setDeliverers(response.data.deliverers);
-    });
+
+  const loadDeliverers = useCallback(async searchData => {
+    try {
+      const response = await api.get('/deliverers', {
+        params: {
+          search: searchData?.search,
+        },
+      });
+      if (response.data) {
+        setDeliverers(response.data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }, []);
 
-  const handleSearchSubmit = useCallback(data => {
-    setDeliverers(data);
-  }, []);
+  useEffect(() => {
+    loadDeliverers(null);
+  }, [loadDeliverers]);
+
+  const handleSearchSubmit = useCallback(
+    data => {
+      loadDeliverers(data);
+    },
+    [loadDeliverers],
+  );
 
   const handleDeliverymanCreate = useCallback(() => {
     history.push('/create-deliveryman');

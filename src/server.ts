@@ -328,7 +328,19 @@ export function makeServer() {
         order?.destroy();
       });
 
-      this.get('/deliverers');
+      this.get('/deliverers', async (_, request) => {
+        const { deliverers } = this.schema.db;
+
+        if (request.queryParams.search) {
+          const { search } = request.queryParams;
+          return this.db.deliverers.where(
+            (deliveryman: { name: string; email: string }) =>
+              parseString(deliveryman.name).includes(parseString(search)) ||
+              parseString(deliveryman.email).includes(parseString(search)),
+          );
+        }
+        return deliverers;
+      });
 
       this.post('/deliverers', async (_, request) => {
         const data = JSON.parse(request.requestBody);
