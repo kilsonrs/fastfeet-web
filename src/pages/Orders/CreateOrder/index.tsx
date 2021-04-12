@@ -9,6 +9,7 @@ import React, {
 import * as Yup from 'yup';
 
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import getValidationErrors from '../../../utils/getValidationErrors';
 
 import FormHeader from '../../../components/FormHeader';
@@ -68,12 +69,15 @@ const CreateOrder: React.FC = () => {
         });
 
         await api.post('/orders', data);
+
+        toast.success('Encomenda cadastrada');
         history.push('/orders');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
-
           formRef.current?.setErrors(errors);
+        } else {
+          toast.error('Erro ao cadastrar encomenda');
         }
       }
     },

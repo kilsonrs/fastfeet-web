@@ -1,6 +1,7 @@
 import { FormHandles } from '@unform/core';
 import React, { useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import FormHeader from '../../../components/FormHeader';
 import Input from '../../../components/Input';
@@ -37,13 +38,16 @@ const CreateDeliveryman: React.FC = () => {
         });
 
         await api.post('/deliverers', data);
+
+        toast.success('Entregador cadastrado com sucesso');
         history.goBack();
       } catch (err) {
-        console.log(err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
+        } else {
+          toast.error('Erro ao cadastrar entregador');
         }
       }
     },

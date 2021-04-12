@@ -1,6 +1,7 @@
 import { FormHandles } from '@unform/core';
 import React, { useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import FormHeader from '../../../components/FormHeader';
 import Input from '../../../components/Input';
@@ -71,13 +72,16 @@ const EditRecipient: React.FC = () => {
         });
 
         await api.put(`/recipients/${recipientId}`, data);
+
+        toast.success('Destinatário atualizado');
         history.push('/recipients');
       } catch (err) {
-        console.error(err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
+        } else {
+          toast.error('Erro ao atualizar distinatário');
         }
       }
     },

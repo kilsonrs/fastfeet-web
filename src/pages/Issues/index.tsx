@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import ActionButton from '../../components/ActionButton';
 import ViewIssueModal from '../../components/ViewIssueModal';
 import Table from '../../components/Table';
@@ -17,7 +18,11 @@ const Issues: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    api.get('/issues').then(response => setIssues(response.data.issues));
+    try {
+      api.get('/issues').then(response => setIssues(response.data.issues));
+    } catch {
+      toast.error('Erro ao carregar lista de problemas');
+    }
   }, []);
 
   const toggleModal = useCallback(() => {
@@ -39,8 +44,8 @@ const Issues: React.FC = () => {
           api.delete(`/issues/${id}`);
           setIssues(issues.filter(issue => issue.id !== id));
         }
-      } catch (err) {
-        console.error(err.message);
+      } catch {
+        toast.error('Erro ao excluir problema');
       }
     },
     [issues],

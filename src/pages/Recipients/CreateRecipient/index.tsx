@@ -1,6 +1,7 @@
 import { FormHandles } from '@unform/core';
 import React, { useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import FormHeader from '../../../components/FormHeader';
 import Input from '../../../components/Input';
@@ -50,13 +51,16 @@ const CreateRecipient: React.FC = () => {
         });
 
         await api.post('/recipients', data);
+
+        toast.success('Destinatário cadastrado');
         history.goBack();
       } catch (err) {
-        console.error(err);
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
+        } else {
+          toast.error('Erro ao cadastrar destinatário');
         }
       }
     },

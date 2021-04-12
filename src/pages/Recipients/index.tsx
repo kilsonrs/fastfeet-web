@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import ActionButton from '../../components/ActionButton';
 import Table from '../../components/Table';
@@ -29,7 +30,7 @@ const Recipients: React.FC = () => {
         setRecipients(response.data);
       }
     } catch (err) {
-      console.error(err);
+      toast.error('Erro ao carregar destinatários');
     }
   }, []);
 
@@ -63,9 +64,8 @@ const Recipients: React.FC = () => {
           setRecipients(recipients?.filter(recipient => recipient.id !== id));
         }
       } catch (err) {
-        console.error(err);
+        toast.error('Erro ao excluir destinatário');
       }
-      console.log(id);
     },
     [recipients],
   );

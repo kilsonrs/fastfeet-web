@@ -8,9 +8,10 @@ import { Container, Content } from './styles';
 
 const Header: React.FC = () => {
   const { signOut } = useAuth();
+
   const { pathname } = useLocation();
   const active = pathname.replace('/', '');
-  console.log(active);
+
   return (
     <Container>
       <Content>

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import TableHeader from '../../components/TableHeader';
 import Table from '../../components/Table';
 
@@ -46,7 +47,7 @@ const Orders: React.FC = () => {
         setOrders(response.data);
       }
     } catch (err) {
-      console.error(err);
+      toast.error('Erro ao carregar encomendas');
     }
   }, []);
 
@@ -92,7 +93,7 @@ const Orders: React.FC = () => {
           setOrders(orders?.filter(order => order.id !== id));
         }
       } catch {
-        console.error('Erro ao excluir encomenda');
+        toast.error('Erro ao excluir encomenda');
       }
     },
     [orders],

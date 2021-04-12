@@ -9,6 +9,7 @@ import React, {
 import * as Yup from 'yup';
 
 import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import getValidationErrors from '../../../utils/getValidationErrors';
 
 import FormHeader from '../../../components/FormHeader';
@@ -110,12 +111,16 @@ const EditOrder: React.FC = () => {
         });
 
         await api.put(`/orders/${orderId}`, data);
+
+        toast.success('Encomenda atualizada');
         history.push('/orders');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
+        } else {
+          toast.error('Erro ao atualizar encomenda');
         }
       }
     },
@@ -140,7 +145,7 @@ const EditOrder: React.FC = () => {
 
   return (
     <Container>
-      <FormHeader title="Cadastrar encomendas" handleSubmit={submitForm} />
+      <FormHeader title="Edição de encomendas" handleSubmit={submitForm} />
       <Content onSubmit={handleSubmit} ref={formRef}>
         <span>
           <strong>Destinatário</strong>
