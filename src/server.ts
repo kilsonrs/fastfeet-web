@@ -368,7 +368,19 @@ export function makeServer() {
 
       this.get('/issues');
 
-      this.get('/recipients');
+      this.get('/recipients', async (_, request) => {
+        const { recipients } = this.schema.db;
+
+        if (request.queryParams.search) {
+          const { search } = request.queryParams;
+          return this.db.recipients.where(
+            (recipient: { name: string; full_address: string }) =>
+              parseString(recipient.name).includes(parseString(search)) ||
+              parseString(recipient.full_address).includes(parseString(search)),
+          );
+        }
+        return recipients;
+      });
 
       this.post('/recipients', async (_, request) => {
         const recipientData = JSON.parse(request.requestBody);

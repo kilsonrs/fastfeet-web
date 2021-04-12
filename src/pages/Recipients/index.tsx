@@ -18,15 +18,31 @@ const Recipients: React.FC = () => {
   const [recipients, setRecipients] = useState<IRecipients[] | null>(null);
   const history = useHistory();
 
-  useEffect(() => {
-    api
-      .get('/recipients')
-      .then(response => setRecipients(response.data.recipients));
+  const loadRecipients = useCallback(async searchData => {
+    try {
+      const response = await api.get('/recipients', {
+        params: {
+          search: searchData?.search,
+        },
+      });
+      if (response.data) {
+        setRecipients(response.data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }, []);
 
-  const handleSearchSubmit = useCallback(data => {
-    setRecipients(data);
-  }, []);
+  useEffect(() => {
+    loadRecipients(null);
+  }, [loadRecipients]);
+
+  const handleSearchSubmit = useCallback(
+    data => {
+      loadRecipients(data);
+    },
+    [loadRecipients],
+  );
 
   const handleRecipientCreate = useCallback(() => {
     history.push('/create-recipient');
