@@ -32,9 +32,19 @@ const Issues: React.FC = () => {
     [toggleModal],
   );
 
-  const handleIssueDelete = useCallback(id => {
-    console.log(id);
-  }, []);
+  const handleIssueDelete = useCallback(
+    id => {
+      try {
+        if (issues) {
+          api.delete(`/issues/${id}`);
+          setIssues(issues.filter(issue => issue.id !== id));
+        }
+      } catch (err) {
+        console.error(err.message);
+      }
+    },
+    [issues],
+  );
 
   const columns = ['Encomenda', 'Problema'];
 

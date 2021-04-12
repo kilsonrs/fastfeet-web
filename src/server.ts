@@ -368,6 +368,14 @@ export function makeServer() {
 
       this.get('/issues');
 
+      this.delete('/issues/:id', async (_, request) => {
+        const { params } = request;
+        const issue = this.schema.findBy('issues', {
+          id: params.id,
+        });
+        issue?.destroy();
+      });
+
       this.get('/recipients', async (_, request) => {
         const { recipients } = this.schema.db;
 
