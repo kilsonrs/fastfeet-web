@@ -53,7 +53,7 @@ const Orders: React.FC = () => {
 
   useEffect(() => {
     loadOrders(null);
-  }, [loadOrders]);
+  }, []);
 
   const handleSearchSubmit = useCallback(
     searchData => {

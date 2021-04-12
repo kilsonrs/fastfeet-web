@@ -36,7 +36,7 @@ const Deliverers: React.FC = () => {
 
   useEffect(() => {
     loadDeliverers(null);
-  }, [loadDeliverers]);
+  }, []);
 
   const handleSearchSubmit = useCallback(
     data => {

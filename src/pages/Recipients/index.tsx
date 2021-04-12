@@ -36,7 +36,7 @@ const Recipients: React.FC = () => {
 
   useEffect(() => {
     loadRecipients(null);
-  }, [loadRecipients]);
+  }, []);
 
   const handleSearchSubmit = useCallback(
     data => {
