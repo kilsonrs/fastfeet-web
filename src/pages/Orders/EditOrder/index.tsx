@@ -24,19 +24,11 @@ interface IRecipients {
   address: string;
 }
 
-interface IRecipientsApiResponse {
-  recipients: IRecipients[];
-}
-
 interface IDeliverers {
   id: string;
   avatar_url: string;
   name: string;
   email: string;
-}
-
-interface IDeliverersApiResponse {
-  deliverers: IDeliverers[];
 }
 
 interface EditOrderForm {
@@ -66,14 +58,14 @@ const EditOrder: React.FC = () => {
 
   useEffect(() => {
     const loadOptions = async () => {
-      const getRecipients = api.get<IRecipientsApiResponse>('/recipients');
-      const getDeliverers = api.get<IDeliverersApiResponse>('/deliverers');
+      const getRecipients = api.get('/recipients');
+      const getDeliverers = api.get('/deliverers');
 
       Promise.all([getRecipients, getDeliverers]).then(responses => {
-        setRecipients(responses[0].data.recipients);
+        setRecipients(responses[0].data);
 
-        const recipient = responses[0].data.recipients.filter(
-          item => item.name === recipientName,
+        const recipient = responses[0].data.filter(
+          (item: { name: string }) => item.name === recipientName,
         )[0];
 
         formRef.current?.setFieldValue('recipient', {
@@ -81,10 +73,10 @@ const EditOrder: React.FC = () => {
           label: recipientName,
         });
 
-        setDeliverers(responses[1].data.deliverers);
+        setDeliverers(responses[1].data);
 
-        const deliveryman = responses[1].data.deliverers.filter(
-          item => item.name === deliverymanName,
+        const deliveryman = responses[1].data.filter(
+          (item: { name: string }) => item.name === deliverymanName,
         )[0];
 
         formRef.current?.setFieldValue('deliveryman', {

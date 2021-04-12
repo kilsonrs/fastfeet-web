@@ -44,12 +44,8 @@ const CreateOrder: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    api
-      .get('/recipients')
-      .then(response => setRecipients(response.data.recipients));
-    api
-      .get('/deliverers')
-      .then(response => setDeliverers(response.data.deliverers));
+    api.get('/recipients').then(response => setRecipients(response.data));
+    api.get('/deliverers').then(response => setDeliverers(response.data));
   }, []);
 
   const submitForm = useCallback(() => {
