@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { createServer, Model } from 'miragejs';
+import { parseString } from './utils/parseString';
 
 export function makeServer() {
   return createServer({
@@ -238,7 +239,19 @@ export function makeServer() {
         };
       });
 
-      this.get('/orders');
+      this.get('/orders', async (_, request) => {
+        const { orders } = this.schema.db;
+
+        if (request.queryParams.search) {
+          const { search } = request.queryParams;
+          return this.db.orders.where(
+            (order: { recipient: string; deliveryman: string }) =>
+              parseString(order.recipient).includes(parseString(search)) ||
+              parseString(order.deliveryman).includes(parseString(search)),
+          );
+        }
+        return orders;
+      });
 
       this.post('/orders', async (_, request) => {
         const data = JSON.parse(request.requestBody);

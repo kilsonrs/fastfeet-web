@@ -26,6 +26,7 @@ const Routes: React.FC = () => {
         <Route path="/orders" component={Orders} isPrivate />
         <Route path="/create-order" exact component={CreateOrder} isPrivate />
         <Route path="/edit-order" exact component={EditOrder} isPrivate />
+
         <Route path="/deliverers" component={Deliverers} isPrivate />
         <Route
           path="/create-deliveryman"
@@ -33,9 +34,11 @@ const Routes: React.FC = () => {
           isPrivate
         />
         <Route path="/edit-deliveryman" component={EditDeliveryman} isPrivate />
+
         <Route path="/recipients" component={Recipients} isPrivate />
         <Route path="/create-recipient" component={CreateRecipient} isPrivate />
         <Route path="/edit-recipient" component={EditRecipient} isPrivate />
+
         <Route path="/issues" component={Issues} isPrivate />
       </Dashboard>
     </Switch>
