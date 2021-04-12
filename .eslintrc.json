@@ -25,7 +25,6 @@
     "prettier"
   ],
   "rules": {
-    "no-console": "off",
     "no-unused-expressions": "off",
     "import/no-duplicates": "off",
     "react/prop-types": "off",
