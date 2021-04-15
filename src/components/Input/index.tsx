@@ -57,7 +57,12 @@ const Input: React.FC<InputProps> = ({
         isFocus={isFocused}
         isFilled={isFilled}
       >
-        {Icon && <Icon size={20} color="#999999" />}
+        {Icon && (
+          <Icon
+            size={20}
+            color={isFocused || isFilled ? '#7d40e7' : '#999999'}
+          />
+        )}
 
         <input
           onFocus={handleInputFocus}
