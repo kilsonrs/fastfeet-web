@@ -37,7 +37,9 @@ const EditDeliveryman: React.FC = () => {
 
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome é obrigatório'),
-          email: Yup.string().email().required('Email é obrigatório'),
+          email: Yup.string()
+            .email('Digite um e-mail válido')
+            .required('Email é obrigatório'),
         });
 
         await schema.validate(data, {

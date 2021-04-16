@@ -17,33 +17,31 @@ interface IDeliverers {
 
 const Deliverers: React.FC = () => {
   const [deliverers, setDeliverers] = useState<IDeliverers[] | null>(null);
+  const [search, setSearch] = useState();
   const history = useHistory();
 
-  const loadDeliverers = useCallback(async searchData => {
-    try {
-      const response = await api.get('/deliverers', {
-        params: {
-          search: searchData?.search,
-        },
-      });
-      if (response.data) {
-        setDeliverers(response.data);
-      }
-    } catch (err) {
-      toast.error('Erro ao carregar Entregadores');
-    }
-  }, []);
-
   useEffect(() => {
-    loadDeliverers(null);
-  }, []);
+    const loadDeliverers = async () => {
+      try {
+        const response = await api.get('/deliverers', {
+          params: {
+            search,
+          },
+        });
+        if (response.data) {
+          setDeliverers(response.data);
+        }
+      } catch (err) {
+        toast.error('Erro ao carregar Entregadores');
+      }
+    };
 
-  const handleSearchSubmit = useCallback(
-    data => {
-      loadDeliverers(data);
-    },
-    [loadDeliverers],
-  );
+    loadDeliverers();
+  }, [search]);
+
+  const handleSearchSubmit = useCallback(data => {
+    setSearch(data.search);
+  }, []);
 
   const handleDeliverymanCreate = useCallback(() => {
     history.push('/create-deliveryman');

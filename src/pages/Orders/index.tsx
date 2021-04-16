@@ -32,35 +32,33 @@ interface IOrders {
 
 const Orders: React.FC = () => {
   const [orders, setOrders] = useState<IOrders[] | null>(null);
+  const [search, setSearch] = useState();
   const [orderViewing, setOrderViewing] = useState<IOrders>();
   const [modalOpen, setModalOpen] = useState(false);
   const history = useHistory();
 
-  const loadOrders = useCallback(async searchData => {
-    try {
-      const response = await api.get('/orders', {
-        params: {
-          search: searchData?.search,
-        },
-      });
-      if (response.data) {
-        setOrders(response.data);
-      }
-    } catch (err) {
-      toast.error('Erro ao carregar encomendas');
-    }
-  }, []);
-
   useEffect(() => {
-    loadOrders(null);
-  }, []);
+    const loadOrders = async () => {
+      try {
+        const response = await api.get('/orders', {
+          params: {
+            search,
+          },
+        });
 
-  const handleSearchSubmit = useCallback(
-    searchData => {
-      loadOrders(searchData);
-    },
-    [loadOrders],
-  );
+        if (response.data) {
+          setOrders(response.data);
+        }
+      } catch (err) {
+        toast.error('Erro ao carregar encomendas');
+      }
+    };
+    loadOrders();
+  }, [search]);
+
+  const handleSearchSubmit = useCallback(data => {
+    setSearch(data.search);
+  }, []);
 
   const toggleModal = useCallback(() => {
     setModalOpen(!modalOpen);

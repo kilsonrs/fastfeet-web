@@ -17,33 +17,30 @@ interface IRecipients {
 
 const Recipients: React.FC = () => {
   const [recipients, setRecipients] = useState<IRecipients[] | null>(null);
+  const [search, setSearch] = useState();
   const history = useHistory();
 
-  const loadRecipients = useCallback(async searchData => {
-    try {
-      const response = await api.get('/recipients', {
-        params: {
-          search: searchData?.search,
-        },
-      });
-      if (response.data) {
-        setRecipients(response.data);
-      }
-    } catch (err) {
-      toast.error('Erro ao carregar destinatários');
-    }
-  }, []);
-
   useEffect(() => {
-    loadRecipients(null);
-  }, []);
+    const loadRecipients = async () => {
+      try {
+        const response = await api.get('/recipients', {
+          params: {
+            search,
+          },
+        });
+        if (response.data) {
+          setRecipients(response.data);
+        }
+      } catch (err) {
+        toast.error('Erro ao carregar destinatários');
+      }
+    };
+    loadRecipients();
+  }, [search]);
 
-  const handleSearchSubmit = useCallback(
-    data => {
-      loadRecipients(data);
-    },
-    [loadRecipients],
-  );
+  const handleSearchSubmit = useCallback(data => {
+    setSearch(data.search);
+  }, []);
 
   const handleRecipientCreate = useCallback(() => {
     history.push('/create-recipient');
