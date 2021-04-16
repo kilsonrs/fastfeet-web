@@ -4,14 +4,14 @@ import styled from 'styled-components';
 export const Container = styled.div``;
 
 export const Content = styled(Form)`
-  background: #fff;
+  background: var(--color-white);
   border-radius: 4px;
-  padding: 30px;
+  padding: 32px;
 
   display: grid;
   grid-template-columns: 4fr 3fr;
   grid-row-gap: 8px;
-  grid-column-gap: 30px;
+  grid-column-gap: 32px;
   grid-template-areas:
     'name   name   name    name'
     'street street number  neigh'

@@ -7,7 +7,7 @@ export const Container = styled.div`
 
   h1 {
     font-size: 24px;
-    margin: 34px 0;
+    margin: 32px 0;
   }
 
   span {
@@ -16,7 +16,7 @@ export const Container = styled.div`
 
     button {
       padding: 8px 16px;
-      height: 36px;
+      height: 40px;
 
       & + button {
         margin-left: 16px;

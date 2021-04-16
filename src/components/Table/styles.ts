@@ -15,11 +15,10 @@ export const Container = styled.div`
     }
 
     td {
-      background: #fff;
-      border-radius: 4px;
+      background: var(--color-white);
       height: 64px;
       padding: 0 16px;
-      color: #666666;
+      color: var(--color-gray-500);
       span {
         display: flex;
         align-items: center;
@@ -29,6 +28,11 @@ export const Container = styled.div`
     th:last-of-type,
     td:last-of-type {
       text-align: right;
+      border-radius: 0 4px 4px 0;
+    }
+
+    td:first-of-type {
+      border-radius: 4px 0 0 4px;
     }
   }
 `;

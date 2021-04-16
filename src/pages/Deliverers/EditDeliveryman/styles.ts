@@ -4,15 +4,15 @@ import styled from 'styled-components';
 export const Container = styled.div``;
 
 export const Content = styled(Form)`
-  background: #fff;
+  background: var(--color-white);
   border-radius: 4px;
-  padding: 30px;
+  padding: 32px;
 
   display: flex;
   flex-direction: column;
 
   .email {
-    margin-top: 18px;
+    margin-top: 16px;
   }
 
   strong {

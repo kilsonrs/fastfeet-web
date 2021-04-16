@@ -16,6 +16,6 @@ export const Error = styled.span`
   small {
     font-size: 14px;
     margin-left: 4px;
-    color: #de3b3b;
+    color: var(--color-red-500);
   }
 `;

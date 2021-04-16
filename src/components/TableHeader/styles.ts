@@ -11,14 +11,14 @@ export const Container = styled.div`
         font-size: 14px;
 
         &::placeholder {
-          color: #999999;
+          color: var(--color-gray-400);
         }
       }
     }
 
     button {
       width: 142px;
-      height: 36px;
+      height: 40px;
       margin-left: auto;
     }
   }

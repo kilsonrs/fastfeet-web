@@ -12,28 +12,28 @@ export const Content = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #dddddd;
+  border: 1px solid var(--color-gray-200);
   border-radius: 4px;
-  padding: 12px 15px;
-  background: #fff;
-  height: 45px;
+  padding: 12px 14px;
+  background: var(--color-white);
+  height: 40px;
 
   ${props =>
     props.isFocus &&
     css`
-      border-color: #7d40e7;
+      border-color: var(--color-purple);
     `}
 
   ${props =>
     props.isFilled &&
     css`
-      border-color: #7d40e7;
+      border-color: var(--color-purple);
     `}
 
   ${props =>
     props.isErrored
       ? css`
-          border-color: #de3b3b;
+          border-color: var(--color-red-500);
         `
       : css`
           margin-bottom: 22px;
@@ -41,7 +41,7 @@ export const Content = styled.div<ContainerProps>`
 
   input {
     border: 0;
-    color: #999999;
+    color: var(--color-gray-400);
     height: 24px;
     width: 100%;
 
@@ -64,6 +64,6 @@ export const Error = styled.span`
   small {
     font-size: 14px;
     margin-left: 4px;
-    color: #de3b3b;
+    color: var(--color-red-500);
   }
 `;

@@ -23,7 +23,7 @@ const handleStatusColor = (status: string) => {
 export const Container = styled.section<StatusProps>`
   display: flex;
   align-items: center;
-  padding: 3px 7px;
+  padding: 4px 8px;
   width: fit-content;
   border-radius: 16px;
 
@@ -34,7 +34,7 @@ export const Container = styled.section<StatusProps>`
   }
 
   strong {
-    font-size: 14px;
+    font-size: 12px;
     ${({ status }) => handleStatusColor(status)}
     margin: 0 4px;
     text-transform: uppercase;
@@ -42,5 +42,5 @@ export const Container = styled.section<StatusProps>`
 `;
 
 export const Icon = styled(MdFiberManualRecord).attrs({
-  size: 14,
+  size: 12,
 })``;

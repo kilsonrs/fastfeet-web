@@ -12,11 +12,11 @@ export const Container = styled.button<ContainerProps>`
   border-radius: 4px;
   background: ${({ color }) => color || '#7d40e7'};
 
-  color: #fff;
+  color: var(--color-white);
   font-size: 14px;
   font-weight: 500;
 
   svg {
-    margin-right: 7px;
+    margin-right: 8px;
   }
 `;

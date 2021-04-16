@@ -9,12 +9,12 @@ export const OrderInfo = styled.div`
   flex-direction: column;
 
   strong {
-    color: #666;
+    color: var(--color-gray-500);
     margin-bottom: 16px;
   }
 
   p {
-    color: #666;
+    color: var(--color-gray-500);
     margin-top: 16px;
   }
 `;
@@ -24,13 +24,13 @@ export const Address = styled.section`
 
   strong {
     display: block;
-    color: #666666;
+    color: var(--color-gray-500);
     margin-bottom: 8px;
   }
 
   p {
     margin-top: 4px;
-    color: #666666;
+    color: var(--color-gray-500);
   }
 `;
 
@@ -39,13 +39,13 @@ export const Status = styled.div`
   flex-direction: column;
 
   padding: 8px 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-gray-100);
 
   small {
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 14px;
-    color: #444444;
+    color: var(--color-gray-600);
   }
 
   span {
@@ -54,10 +54,10 @@ export const Status = styled.div`
 
     strong {
       margin-right: 4px;
-      color: #666666;
+      color: var(--color-gray-500);
     }
     p {
-      color: #666666;
+      color: var(--color-gray-500);
     }
   }
 `;
@@ -66,7 +66,7 @@ export const Signature = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 8px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-gray-100);
 
   img {
     margin-top: 24px;

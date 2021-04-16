@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #7d40e7;
+  background: var(--color-purple);
 
   form {
     height: 425px;
@@ -17,8 +17,8 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     border-radius: 4px;
-    box-shadow: 0px 0px 10px #00000033;
-    background: #ffffff;
+    box-shadow: 0px 0px 10px var(--color-shadow);
+    background: var(--color-white);
 
     img {
       max-width: 250px;
@@ -28,7 +28,8 @@ export const Container = styled.div`
 
     strong {
       margin-bottom: 9px;
-      color: #444444;
+      font-size: 14px;
+      color: var(--color-gray-600);
     }
 
     strong:nth-child(4) {
@@ -37,7 +38,7 @@ export const Container = styled.div`
 
     button {
       margin-top: 15px;
-      height: 45px;
+      height: 48px;
     }
   }
 `;

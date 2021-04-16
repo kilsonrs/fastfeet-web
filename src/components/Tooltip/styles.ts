@@ -8,8 +8,8 @@ export const Container = styled.div`
     justify-content: center;
     width: 200px;
     padding: 8px;
-    background: #de3b3b;
-    color: #fff;
+    background: var(--color-red-500);
+    color: var(--color-white);
     border-radius: 4px;
     opacity: 0;
     transition: opacity 0.4s;
@@ -23,7 +23,7 @@ export const Container = styled.div`
     &::before {
       content: '';
       border-style: solid;
-      border-color: #de3b3b transparent;
+      border-color: var(--color-red-500) transparent;
       border-width: 6px 6px 0 6px;
       top: 100%;
       position: absolute;

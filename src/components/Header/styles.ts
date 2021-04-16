@@ -10,8 +10,8 @@ export const Content = styled.div`
   display: flex;
   align-items: center;
   height: 64px;
-  background: #ffffff;
-  border: 1px solid #dddddd;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
 
   img {
     width: 135px;
@@ -34,13 +34,13 @@ export const Content = styled.div`
         margin: 0 12px;
         font-size: 15px;
         text-decoration: none;
-        color: #999999;
+        color: var(--color-gray-400);
       }
     }
 
     .active {
       a {
-        color: #8e5be8;
+        color: var(--color-purple);
       }
     }
 
@@ -52,7 +52,7 @@ export const Content = styled.div`
       position: absolute;
       top: 60px;
       left: 0;
-      background: #8e5be8;
+      background: var(--color-purple);
     }
   }
 
