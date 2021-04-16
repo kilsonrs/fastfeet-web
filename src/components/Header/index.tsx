@@ -18,13 +18,13 @@ const Header: React.FC = () => {
         <img src={Logo} alt="FastFeet" />
         <nav>
           <ul>
-            <li className={active === 'orders' ? 'active' : ''}>
+            <li className={active.includes('order') ? 'active' : ''}>
               <Link to="/orders">ENCOMENDAS</Link>
             </li>
-            <li className={active === 'deliverers' ? 'active' : ''}>
+            <li className={active.includes('deliver') ? 'active' : ''}>
               <Link to="/deliverers">ENTREGADORES</Link>
             </li>
-            <li className={active === 'recipients' ? 'active' : ''}>
+            <li className={active.includes('recipient') ? 'active' : ''}>
               <Link to="/recipients">DESTINATÁRIOS</Link>
             </li>
             <li className={active === 'issues' ? 'active' : ''}>
