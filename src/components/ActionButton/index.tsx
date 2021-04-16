@@ -20,16 +20,27 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     setIsOpen(!isOpen);
   }, [isOpen]);
 
+  const handleViewButton = useCallback(() => {
+    setIsOpen(false);
+    if (handleView) {
+      handleView();
+    }
+  }, [handleView]);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
   return (
-    <Container>
+    <Container onMouseLeave={handleMouseLeave}>
       <button type="button" onClick={toggleOpen}>
         <MdMoreHoriz size={24} color="#999" />
       </button>
-      <Content isOpen={isOpen} onMouseLeave={toggleOpen}>
+      <Content isOpen={isOpen}>
         <ul>
           {handleView && (
             <li>
-              <button type="button" onClick={handleView}>
+              <button type="button" onClick={handleViewButton}>
                 <MdVisibility size={24} color="#8E5BE8" />
                 <p>Visualizar</p>
               </button>
@@ -52,6 +63,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
             </li>
           )}
         </ul>
+        <div className="arrow" />
       </Content>
     </Container>
   );

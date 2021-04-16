@@ -6,7 +6,6 @@ interface ContentProps {
 
 export const Container = styled.div`
   position: relative;
-
   button {
     border: 0;
     width: 45px;
@@ -24,7 +23,7 @@ export const Content = styled.div<ContentProps>`
   box-shadow: 0px 0px 2px #00000026;
 
   position: absolute;
-  right: calc(50% - 25px);
+  right: 0;
 
   z-index: 10;
   ul {
@@ -48,6 +47,27 @@ export const Content = styled.div<ContentProps>`
           color: #999999;
         }
       }
+    }
+  }
+  div.arrow {
+    content: ' ';
+    height: 25px;
+    width: 30px;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    overflow: hidden;
+
+    &::after {
+      content: ' ';
+      height: 20px;
+      width: 20px;
+      background: white;
+      position: absolute;
+      right: 12px;
+      bottom: -15px;
+      transform: rotate(45deg);
+      box-shadow: 0px 0px 2px #00000026;
     }
   }
 `;

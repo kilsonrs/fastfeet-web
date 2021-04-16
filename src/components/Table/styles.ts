@@ -25,5 +25,10 @@ export const Container = styled.div`
         align-items: center;
       }
     }
+
+    th:last-of-type,
+    td:last-of-type {
+      text-align: right;
+    }
   }
 `;
