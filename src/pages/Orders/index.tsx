@@ -10,6 +10,7 @@ import Badge from '../../components/Badge';
 import api from '../../services/api';
 import ActionButton from '../../components/ActionButton';
 import ViewOrderModal from '../../components/ViewOrderModal';
+import LoadingOrdersTable from '../../components/Shimmer/LoadingOrdersTable';
 
 interface IOrders {
   id: string | number;
@@ -163,7 +164,7 @@ const Orders: React.FC = () => {
             ))}
           </Table>
         ) : (
-          <h1>Carregando...</h1>
+          <LoadingOrdersTable />
         )}
       </Container>
     </>

@@ -16,7 +16,7 @@ export function makeServer() {
     },
     routes() {
       this.namespace = 'api';
-
+      this.timing = 1000;
       this.post('/user-sessions', async () => {
         return {
           user: {

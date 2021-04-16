@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import ActionButton from '../../components/ActionButton';
+import LoadingRecipientsTable from '../../components/Shimmer/LoadingRecipientsTable';
 import Table from '../../components/Table';
 import TableHeader from '../../components/TableHeader';
 import api from '../../services/api';
@@ -100,7 +101,7 @@ const Recipients: React.FC = () => {
           ))}
         </Table>
       ) : (
-        <h1>Carregando...</h1>
+        <LoadingRecipientsTable />
       )}
     </Container>
   );

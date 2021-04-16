@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import ActionButton from '../../components/ActionButton';
+import LoadingDeliverersTable from '../../components/Shimmer/LoadingDeliverersTable';
 import Table from '../../components/Table';
 import TableHeader from '../../components/TableHeader';
 import api from '../../services/api';
@@ -114,7 +115,7 @@ const Deliverers: React.FC = () => {
           ))}
         </Table>
       ) : (
-        <h1>Carregando...</h1>
+        <LoadingDeliverersTable />
       )}
     </Container>
   );

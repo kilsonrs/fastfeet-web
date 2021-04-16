@@ -6,6 +6,7 @@ import Table from '../../components/Table';
 import api from '../../services/api';
 
 import { Container } from './styles';
+import LoadingIssuesTable from '../../components/Shimmer/LoadingIssuesTable';
 
 interface IIssue {
   id: string | number;
@@ -84,7 +85,7 @@ const Issues: React.FC = () => {
             ))}
           </Table>
         ) : (
-          <h1>Carregando...</h1>
+          <LoadingIssuesTable />
         )}
       </Container>
     </>
